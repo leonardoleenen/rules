@@ -1,0 +1,84 @@
+<ul class="breadcrumb bg-white b-a" ng-hide="$parent.entitiesExternal">
+  <li><a ui-sref="app.dashboard"><i class="fa fa-home"></i> Inicio</a></li>
+  <li><a ui-sref="app.functions">Funciones</a></li>
+  <li class="active">Editor de funciones</li>
+</ul>
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <h2>
+      <span>Editor de funciones</span>
+    </h2>
+    <span flex></span>
+    <button class="btn btn-default btn-addon" aria-label="Learn More" ng-click="showFAQs()">
+      <i class="fa fa-question"></i>
+      Ayuda
+      <md-tooltip>Ver preguntas frecuentes</md-tooltip>
+    </button>
+  </div>
+</md-toolbar>
+<md-content class="md-padding">
+  <form name="userForm">
+   <!-- helpers -->
+    <div layout layour-sm="column">
+      <h3>Encabezado</h3>
+    </div>
+    <div layout layout-sm="column">
+      <div class="funct-top" style="margin-left: 131px; margin-bottom: 9px;">
+        <div style="text-align: center"><small class="cute">Tipo de retorno</small></div>
+      </div>
+      <div class="funct-top" style="margin-left: 131px; margin-bottom: 9px;">
+        <div style="text-align: center"><small class="cute">Nombre de la función</small></div>
+      </div>
+      <div class="funct-top" style="margin-left: 131px; margin-bottom: 9px;">
+        <div style="text-align: center"><small class="cute">Atributos de la función</small></div>
+      </div>
+    </div>
+    <div layout layout-sm="column">
+      <div class="funct-top" ><h4>Function</h4></div>
+      <div class="funct-top" ><select class="form-control" ng-readonly="funct.id!=null" ng-disabled="funct.id!=null" ng-options="item.type as item.readableType for item in types" ng-model="funct.returnType" style="width: 200px;"></select></div>
+      <div class="funct-top" ><input placeholder="nombre función" type="text" name="name" ng-readonly="funct.id!=null" class="form-control" ng-model="funct.name" style="width: 200px;" ng-pattern="/^[^A-Z0-9][a-z+A-Z+\_]+$/">
+        <div ng-messages="userForm.name.$error">
+          <div ng-message="pattern">comenzar con minuscula, sin espacios.</div>
+        </div>
+        </div>
+      <div class="funct-top"><h4>(</h4></div>
+      <div class="funct-top" ng-repeat="item in funct.params">
+        <h4>
+          {{item.type}} {{item.name}}
+          <a ng-click="deleteParam($index)" class="btn btn-danger btn-xs">
+            <i class="fa fa-trash"></i>
+            <md-tooltip>Eliminar parámetro</md-tooltip>
+          </a>
+          ,
+        </h4>
+      </div>
+      <div class="funct-top" ng-show="isAddingParam"><select class="form-control" ng-options="item.type as item.readableType for item in types" ng-model="temp.type" style="width: 130px;"></select></div>
+      <div class="funct-top" ng-show="isAddingParam"><input placeholder="nombre parámetro" type="text" class="form-control" ng-model="temp.name" style="width: 130px;" ng-pattern="/^[a-z][a-zA-Z0-9_]+$/"></div>
+      <div class="funct-top">
+        <h4>
+          <a ng-click="isAddingParam=true" ng-hide="isAddingParam" class="btn btn-primary btn-xs">
+            <i class="fa fa-plus"></i>
+            <md-tooltip>Agregar parametro</md-tooltip>
+          </a>
+          <a ng-click="addParam()" ng-show="isAddingParam" class="btn btn-primary" style="margin-top: -10px;">
+            <i class="fa fa-check"></i>
+            <md-tooltip>Aceptar</md-tooltip>
+          </a>
+          )
+        </h4>
+      </div>
+    </div>
+  </form>
+  <h3>Cuerpo</h3>
+  <div id="editor"></div>
+
+  <button md-ink-ripple ng-hide="$parent.entitiesExternal" class="btn btn-default btn-fw " ng-click="goBack()" style="float:right; margin-left: 15px;">Volver</button>
+  <button md-ink-ripple type="button" class="btn btn-primary btn-fw btn-addon" ng-click="save()" style="float:right; margin-left:15px;"><i class="fa fa-save"></i>Guardar</button>
+  <button ng-hide="$parent.entitiesExternal" md-ink-ripple type="button" class="btn btn-primary btn-fw btn-addon" ng-click="save('goBack')" style="float:right; margin-left:15px;">
+    <i class="fa fa-save"></i>
+    Guardar y volver
+  </button>
+  <button md-ink-ripple type="button" class="btn btn-primary btn-fw " ng-click="simulate()" style="float:right;">Evaluar</button>
+
+</md-content>
+

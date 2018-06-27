@@ -1,0 +1,98 @@
+<md-dialog aria-label="List dialog" style="min-width: 500px">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>
+        <span>SLA: "{{obj.name}} {{obj.version}}" </span>
+      </h2>
+      <div flex></div>
+    </div>
+  </md-toolbar>
+  <!-- NOT JSON -->
+  <md-dialog-content>
+   <div class="md-dialog-content" ng-hide="json">
+        <div class="rest">
+          <legend style="text-align:center; color: #666; font-weight:100;" class="cute">
+            Servicio web REST:
+          </legend>
+          <div layout layout-sm="column">
+            <h4 >Dirección:</h4>
+            <span flex></span>
+          </div>
+          <pre><i class="fa fa-link"></i>  {{obj.servicio.url}}{{obj.servicio.rest.servicio}}</pre>
+          <div layout layout-sm="column">
+            <span flex></span>
+            <small>Metodo </small>
+            <span style="margin-left:5px" class="badge bg-primary noBorderRadius ng-binding">{{obj.servicio.rest.method?obj.servicio.rest.method:"POST"}}</span>
+            <small style="margin-left:5px">Encabezados </small>
+            <span style="margin-left:5px" class="badge bg-primary noBorderRadius ng-binding">{ {{obj.servicio.secret_key?"\"Content-Type\": \"application/json\", \"Authorization\": \""+obj.servicio.secret_key+"\"":"\"Content-Type\": \"application/json\""}} }</span>
+          </div>
+          <div layout layout-sm="column">
+            <h4 >Dirección auto detección de versión:</h4>
+            <span flex></span>
+          </div>
+          <pre><i class="fa fa-link"></i>  {{obj.servicio.url}}{{getGenericUrl(obj.servicio.rest.servicio)}}</pre>
+          <div layout layout-sm="column">
+            <span flex></span>
+            <small>Metodo </small>
+            <span style="margin-left:5px" class="badge bg-primary noBorderRadius ng-binding">{{obj.servicio.rest.method?obj.servicio.rest.method:"POST"}}</span>
+            <small style="margin-left:5px">Encabezados </small><br>
+            <span style="margin-left:5px" class="badge bg-primary noBorderRadius ng-binding">{ {{"\"Content-Type\": \"application/json\", \"Authorization\": \"16b10dac8eb4b2dea3e117107b04fe1b\", \"Execution-Time\":"}}{{date}} }</span>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="soap" ng-if="obj.servicio.soap">
+          <legend style="text-align:center; color: #666; font-weight:100;" class="cute">
+            Servicio web SOAP:
+          </legend>
+          <div layout layout-sm="column">
+            <h4 >URL:</h4>
+            <span flex></span>
+          </div>
+          <pre><i class="fa fa-link"></i>  {{obj.servicio.url}}</pre>
+
+          <div layout layout-sm="column">
+            <span flex></span>
+            <small>WSDL </small>
+            <span style="margin-left:5px" class="badge bg-primary noBorderRadius ng-binding">{{obj.servicio.soap.wsdl}}</span>
+            <small style="margin-left:5px">Metodo </small>
+            <span style="margin-left:5px" class="badge bg-primary noBorderRadius ng-binding">{{obj.servicio.soap.method}}( {....} {{obj.servicio.secret_key?", \""+obj.servicio.secret_key+"\"":""}} )</span>
+          </div>
+        </div>
+    </div>
+  </md-dialog-content>
+  <!-- ONLY JSON -->
+  <md-dialog-content>
+   <div class="md-dialog-content" ng-show="json">
+      <legend style="text-align:center; color: #666; font-weight:100;" class="cute">Cuerpo del mensaje:</legend>
+      <div layout layout-sm="column">
+        <h4 >JSON:</h4>
+        <span flex></span>
+      </div>
+      <pre>{{obj.servicio.data | json}}</pre>
+      <div layout layout-sm="column">
+        <span flex></span>
+        <small>Valido para:</small>
+        <span style="margin-left:5px" class="badge bg-primary noBorderRadius ng-binding">REST</span><span style="margin-left:5px" class="badge bg-primary noBorderRadius ng-binding">SOAP</span>
+      </div>
+    </div>
+  </md-dialog-content>
+  <div class="md-actions">
+    <md-button ng-hide="json" ng-click="json = true" class="md-primary">
+      JSON
+      <md-tooltip md-direction="bottom">
+        Ver ejemplo del cuerpo del mensaje.
+      </md-tooltip>
+    </md-button>
+    <md-button ng-show="json" ng-click="json = undefined" class="md-primary">
+      SLA
+      <md-tooltip md-direction="bottom">
+        Ver SLA para consumir el servicio.
+      </md-tooltip>
+    </md-button>
+    <md-button ng-click="closeDialog()" class="md-primary">
+    Cerrar
+    </md-button>
+  </div>
+</md-dialog>

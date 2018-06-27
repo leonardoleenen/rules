@@ -1,0 +1,16 @@
+<md-dialog aria-label="List dialog" flex="30">
+    <md-dialog-content style="text-align: center;">
+        <div class="md-dialog-content">
+          <h4>Seleccione entidad a agregar</h4><br>
+          <select class="form-control md-form-control" ng-model="entityToAdd" ng-options="entity as entity.name for entity in entities"></select>
+        </div>
+    </md-dialog-content>
+    <div class="md-actions">  
+        <md-button ng-click="saveCond()" class="md-primary"> 
+            Aceptar 
+        </md-button> 
+        <md-button ng-click="closeDialog()" class="md-primary"> 
+            Cancelar 
+        </md-button> 
+    </div> 
+</md-dialog>

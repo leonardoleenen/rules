@@ -1,0 +1,106 @@
+<div class="row row-xs">
+	<div class="col-md-3">
+	  	<div class="panel panel-card p m-b-sm" style="text-align: center;">
+	  		<h5 class="cute fancyTitle">Funciones  <span style="margin-left: 4px;" class="label bg-light pos-rlt m-r-xs">{{count.function}}</span></h5>
+	  		<button class="btn btn-lg btn-default" style="border:0px;" ui-sref="app.functions">
+	  			<i class="fa fa-terminal" style="font-size: 173px;"></i>
+	  		</button>
+		</div>
+	</div>
+	<div class="col-md-3">
+	  	<div class="panel panel-card p m-b-sm" style="text-align: center;">
+	  		<h5 class="cute fancyTitle">Fórmulas <span style="margin-left: 4px;" class="label bg-light pos-rlt m-r-xs">{{count.formula}}</span></h5>
+	  		<button class="btn btn-lg btn-default" style="border:0px;" ui-sref="app.formulas">
+	  			<i class="fa fa-superscript" style="font-size: 173px;"></i>
+	  		</button>
+		</div>
+	</div>
+	<div class="col-md-3">
+	  	<div class="panel panel-card p m-b-sm" style="text-align: center;">
+	  		<h5 class="cute fancyTitle">Entidades <span style="margin-left: 4px;" class="label bg-light pos-rlt m-r-xs">{{count.entity}}</span></h5>
+	  		<button class="btn btn-lg btn-default" style="border:0px;" ui-sref="app.entities">
+	  			<i class="icon mdi-action-accessibility" style="font-size: 173px;"></i>
+	  		</button>
+		</div>
+	</div>
+	<div class="col-md-3">
+	  	<div class="panel panel-card p m-b-sm" style="text-align: center;">
+	  		<h5 class="cute fancyTitle">Constantes <span style="margin-left: 4px;" class="label bg-light pos-rlt m-r-xs">{{count.list}}</span></h5>
+	  		<button class="btn btn-lg btn-default" style="border:0px;" ui-sref="app.lists">
+	  			<i class="icon mdi-action-https" style="font-size: 173px;"></i>
+	  		</button>
+		</div>
+	</div>
+	<div class="col-md-3">
+	  	<div class="panel panel-card p m-b-sm" style="text-align: center;">
+	  		<h5 class="cute fancyTitle">Instrumentos normativos <span style="margin-left: 4px;" class="label bg-light pos-rlt m-r-xs">{{count.instrument}}</span></h5>
+	  		<button class="btn btn-lg btn-default" style="border:0px;" ui-sref="app.normatives">
+	  			<i class="icon mdi-action-label" style="font-size: 173px;"></i>
+	  		</button>
+		</div>
+	</div>
+	<div class="col-md-3">
+	  	<div class="panel panel-card p m-b-sm" style="text-align: center;">
+	  		<h5 class="cute fancyTitle">Tablas de decisiones <span style="margin-left: 4px;" class="label bg-light pos-rlt m-r-xs">{{count.table}}</span></h5>
+	  		<button class="btn btn-lg btn-warning" style="border:0px;" ui-sref="app.decisionTables">
+	  			<i class="icon mdi-action-view-quilt" style="font-size: 173px;"></i>
+	  		</button>
+		</div>
+	</div>
+	<div class="col-md-3">
+	  	<div class="panel panel-card p m-b-sm" style="text-align: center;">
+	  		<h5 class="cute fancyTitle">Editor de reglas avanzado <span style="margin-left: 4px;" class="label bg-light pos-rlt m-r-xs">{{count.rule}}</span></h5>
+	  		<button class="btn btn-lg btn-warning" style="border:0px;" ui-sref="app.rules">
+	  			<i class="icon mdi-editor-format-line-spacing" style="font-size: 173px;"></i>
+	  		</button>
+		</div>
+	</div>
+	<div class="col-md-3">
+	  	<div class="panel panel-card p m-b-sm" style="text-align: center;">
+	  		<h5 class="cute fancyTitle">Editor de reglas en DRL <span style="margin-left: 4px;" class="label bg-light pos-rlt m-r-xs">{{count.drl}}</span> </h5>
+	  		<button class="btn btn-lg btn-warning" style="border:0px;" ui-sref="app.test">
+	  			<i class="icon mdi-editor-border-color" style="font-size: 173px;"></i>
+	  		</button>
+		</div>
+	</div>
+	<div class="col-md-3">
+	  	<div class="panel panel-card p m-b-sm" style="text-align: center;">
+	  		<h5 class="cute fancyTitle">Dominios <span style="margin-left: 4px;" class="label bg-light pos-rlt m-r-xs">{{count.catalog}}</span></h5>
+	  		<button class="btn btn-lg btn-default" style="border:0px;" ui-sref="app.catalogs">
+	  			<i class="icon mdi-action-book" style="font-size: 173px;"></i>
+	  		</button>
+		</div>
+	</div>
+	<div class="col-md-3">
+	  	<div class="panel panel-card p m-b-sm" style="text-align: center;">
+	  		<h5 class="cute fancyTitle">Escenarios <span style="margin-left: 4px;" class="label bg-light pos-rlt m-r-xs">{{count.simulation}}</span></h5>
+	  		<button class="btn btn-lg btn-default" style="border:0px;" ui-sref="app.simulations">
+	  			<i class="icon mdi-action-verified-user" style="font-size: 173px;"></i>
+	  		</button>
+		</div>
+	</div>
+	<div class="col-md-3" ng-if="securityMatrix.indexOf('MENU_PUBLICACION') != -1">
+	  	<div class="panel panel-card p m-b-sm" style="text-align: center;">
+	  		<h5 class="cute fancyTitle">Publicaciones <span style="margin-left: 4px;" class="label bg-light pos-rlt m-r-xs">{{count.publication}}</span></h5>
+	  		<button class="btn btn-lg btn-default" style="border:0px;" ui-sref="app.publications">
+	  			<i class="icon mdi-action-assignment" style="font-size: 173px;"></i>
+	  		</button>
+		</div>
+	</div>
+<!-- 	<div class="col-md-3">
+	  	<div class="panel panel-card p m-b-sm" style="text-align: center;">
+	  		<h5 class="cute fancyTitle">Historial</h5>
+	  		<button class="btn btn-lg btn-default" style="border:0px;" ui-sref="app.history">
+	  			<i class="icon mdi-action-restore" style="font-size: 173px;"></i>
+	  		</button>
+		</div>
+	</div>
+	<div class="col-md-3" ng-if="securityMatrix.indexOf('AUDIT_MENU') != -1">
+	  	<div class="panel panel-card p m-b-sm" style="text-align: center;">
+	  		<h5 class="cute fancyTitle">Auditoria</h5>
+	  		<button class="btn btn-lg btn-default" style="border:0px;" ui-sref="app.auditory">
+	  			<i class="icon mdi-action-search" style="font-size: 173px;"></i>
+	  		</button>
+		</div>
+	</div> -->
+</div>

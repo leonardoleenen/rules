@@ -1,0 +1,44 @@
+<script type="text/ng-template" id="categoryTree">
+    <ng-form name="intern{{$index}}" ng-init="value.adding=false">
+      <span class="propper-form light-blue">
+        <span ng-if="key!='type'">{{ key }} ({{value.readableType}})
+          <span ng-if="value.type!='object'" class="hidebutton"> : 
+            <input type="text" ng-show="value.type!='date'" class="cust-form-control" style="width:100px;" ng-model="value.value">
+            <md-datepicker ng-change="go()" ng-show="value.type=='date'" ng-model="value.value" md-placeholder="Ingresar Fecha" flex class="another-custom"></md-datepicker>
+          </span>
+          <span style="width:10px; display: inline-block;"></span>
+        </span>
+      </span>
+    </ng-form>
+
+    <ul ng-if="value.type=='object'">
+        <li ng-repeat="(key, value) in value.properties" ng-include="'categoryTree'" ng-if="key!='type'" ng-init="parent = $parent.$parent.value">
+        </li>
+    </ul>
+</script>
+
+<md-dialog aria-label="List dialog" flex="50">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>Visualización/Modificacion de objeto</h2>
+          <span flex></span>
+          <md-button class="md-icon-button" ng-click="closeDialog()">
+          </md-button>
+        </div>
+      </md-toolbar>
+    <md-dialog-content ng-show="!action.type">
+      <div class="md-dialog-content">
+       <h5 class="light-grey">
+            Entidad {{index}}: {{item.name}} 
+        <ul id="mainList">
+          <li ng-repeat="(key, value) in item.schema.properties" ng-include="'categoryTree'">
+          </li>
+        </ul>
+      </div>
+    </md-dialog-content>
+    <div class="md-actions">  
+        <md-button ng-click="accept()" class="md-primary"> 
+            Aceptar
+        </md-button> 
+    </div> 
+</md-dialog>

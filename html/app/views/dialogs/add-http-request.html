@@ -1,0 +1,53 @@
+<md-dialog ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>{{m.editing?"Editando":"Nuevo"}} Servicio http</h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+    <md-dialog-content layout="column">
+      <div class="md-dialog-content" ng-hide="json">
+          <div class="rest">
+            <h4>
+              Tipo de entidad 
+              <button class="btn btn-default btn-sm">?</button>
+              <md-tooltip>Tipo de entidad que retornará el servicio</md-tooltip>
+            </h4>
+            <select placeholder="Seleccione entidad" ng-options="entity.id as entity.name for entity in m.entities" ng-model="m.request.entityId" type="text" class="form-control cust-select" ng-change="m.changedEntity()"></select>
+            <br>
+            <div layout layout-sm="column">
+              <h4 >Dirección:</h4>
+              <span flex></span>
+            </div>
+            <pre><i class="fa fa-link"></i> <input type="text" class="form-control" style="display: inline !important; width:92%!important;" placeholder="http://miservicio.server/servicio1" ng-model="m.request.url"></pre>
+            <div layout layout-sm="column">
+              <span flex></span>
+              <small>Metodo </small>
+              <span style="margin-left:5px" class="badge bg-primary noBorderRadius ng-binding">GET</span>
+              <small style="margin-left:5px">Encabezados </small>
+              <span style="margin-left:5px" class="badge bg-primary noBorderRadius ng-binding">
+              {"Content-Type": "application/json"}</span>
+            </div>
+            <div>
+              <br>
+              <h4>
+                SLA de respuesta
+                <button class="btn btn-default btn-sm">?</button>
+                <md-tooltip>Ejemplo de respuesta del servicio HTTP</md-tooltip>
+              </h4>
+              <pre>{{m.model | json}}</pre>
+            </div>
+          </div>
+
+          <br>
+      </div>
+    </md-dialog-content>
+    <div class="md-actions">
+      <md-button ng-hide="json" ng-click="m.save()" class="md-primary">
+        Aceptar
+      </md-button>
+      <md-button ng-click="m.cancel()" class="md-primary">
+        Cancelar
+      </md-button>
+    </div>
+</md-dialog>

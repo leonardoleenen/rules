@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_RELATION_19911
+Module = LPU_EMI_OCA_RELATION_19911
+[Documentation]
+
+Description = Proyecto a Difusion
+Author = undefined
+Version = 0.1
+Organization = jgm - ArDifusion

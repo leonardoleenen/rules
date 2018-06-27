@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_VIGENTE-ACLARATORIA
+Module = LPU_EMI_OCA_VIGENTE-ACLARATORIA
+[Documentation]
+
+Description = LPU_EMI_OCA_VIGENTE-ACLARATORIA
+Author = dev_user
+Version = 0.1
+Organization = ardifusion - ArDifusion

@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_RELATION_17010
+Module = LPU_EMI_OCA_RELATION_17010
+[Documentation]
+
+Description = Acto Finalizacion -- OCA
+Author = dev_user
+Version = 0.1
+Organization = ardifusion - ArDifusion

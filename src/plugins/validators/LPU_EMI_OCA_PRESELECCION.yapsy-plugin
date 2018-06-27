@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_PRESELECCION
+Module = LPU_EMI_OCA_PRESELECCION
+[Documentation]
+
+Description = Acto de PRESELECCION
+Author = SK
+Version = 0.1
+Organization = jgm - ArDifusion

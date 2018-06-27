@@ -1,0 +1,9 @@
+[Core]
+Name = Testing
+Module = Testing
+[Documentation]
+
+Description = Testing
+Author = dev_user
+Version = 0.1
+Organization = aduana_selectividad - Aduana de Bolivia - Programa de Selectividad

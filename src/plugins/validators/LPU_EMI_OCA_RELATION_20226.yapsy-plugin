@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_RELATION_20226
+Module = LPU_EMI_OCA_RELATION_20226
+[Documentation]
+
+Description = Apertura - Desierto
+Author = SK
+Version = 0.1
+Organization = jgm - ArDifusion

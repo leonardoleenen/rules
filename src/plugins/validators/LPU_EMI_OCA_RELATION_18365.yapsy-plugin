@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_RELATION_18365
+Module = LPU_EMI_OCA_RELATION_18365
+[Documentation]
+
+Description = Preseleccion - Aper. Economico
+Author = skomlev
+Version = 0.1
+Organization = jgm - ArDifusion

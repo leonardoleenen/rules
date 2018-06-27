@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_RELATION_21273
+Module = LPU_EMI_OCA_RELATION_21273
+[Documentation]
+
+Description = Rectificar Con Convocatoria
+Author = dev_user
+Version = 0.1
+Organization = preprod-ardifusion13 - ArDifusion

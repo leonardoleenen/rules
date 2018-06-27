@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_CONVOCATORIA
+Module = LPU_EMI_OCA_CONVOCATORIA
+[Documentation]
+
+Description = xxx LPU_EMI_OCA_CONVOCATORIA
+Author = undefined
+Version = 0.1
+Organization = jgm - ArDifusion

@@ -1,0 +1,50 @@
+<md-dialog aria-label="List dialog" flex="30">
+    <!-- SELECCIONAR TIPO DE ACCION -->
+    <md-dialog-content ng-show="!action.type">
+        <div class="md-dialog-content">
+            <h4 class="cute">Seleccionar tipo de acción</h4>
+            <button class="btn btn-primary" style="margin-right:10px" ng-click="doIt('modify')">Modificar un campo</button>
+            <button class="btn btn-primary" ng-click="doIt('message')">Agregar Mensaje</button>
+        </div>
+    </md-dialog-content>
+    <!-- MODIFY -->
+    <md-dialog-content ng-show="action.type && action.type != 'message' ">
+        <div class="md-dialog-content">
+            <h4>Seleccione atributo a modificar</h4><br>
+            <label class="cute">Entidad</label>
+            <select ng-change="changedEntity()" class="form-control md-form-control" ng-model="obj.entityToAdd" ng-options="entity as entity.name for entity in entities"></select>
+            <br>
+            <label class="cute">Atributo</label>
+            <select class="form-control md-form-control" ng-model="obj.attr" ng-options="plainAttr as plainAttr.name for plainAttr in obj.entityToAdd.plainAttr"></select>
+            <br>
+            <label class="cute" ng-hide="action.formula != undefined || action.funct != undefined || obj.attr == undefined || action == undefined">Valor</label>
+            <div class="input-group m-b" ng-hide="action.formula != undefined || action.funct != undefined || obj.attr == undefined || action == undefined">
+              <input class="form-control md-form-control" ng-model="obj.value">
+              <span class="input-group-btn">
+                <button class="btn btn-default" md-ink-ripple ng-click="addFunction($event, action)">
+                  <i class="fa fa-superscript"></i>
+                  <md-tooltip>Comparar con resultado de formula / funcion</md-tooltip>
+                </button>
+              </span>
+            </div>
+            <button class="btn btn-default btn-addon" md-ink-ripple ng-click="addFunction($event, action)" ng-show="action.formula != undefined || action.funct != undefined">
+              <i class="fa fa-pencil"></i>{{action.funct?"Función...":"Fórmula..."}}
+            </button>
+        </div>
+    </md-dialog-content>
+    <!-- MESSAGE -->
+    <md-dialog-content ng-show="action.type == 'message' ">
+        <div class="md-dialog-content">
+            <h4>Enviar un mensaje</h4><br>
+            <input id="idMessage" class="form-control md-form-control" ng-model="obj.value" placeholder="Mensaje...">
+        </div>
+    </md-dialog-content>
+    <div class="md-actions">
+        <md-button ng-click="save()" class="md-primary">
+            Aceptar
+        </md-button>
+        <md-button ng-click="closeDialog()" class="md-primary">
+            Cancelar
+        </md-button>
+    </div>
+</md-dialog>

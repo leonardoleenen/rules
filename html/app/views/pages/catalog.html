@@ -1,0 +1,137 @@
+<ul class="breadcrumb bg-white b-a" ng-hide="$parent.entitiesExternal">
+  <li><a ui-sref="app.dashboard"><i class="fa fa-home"></i> Inicio</a></li>
+  <li><a ui-sref="app.catalogs">Dominios</a></li>
+  <li class="active">Editor de Dominios</li>
+</ul>
+    <md-toolbar ng-hide="$parent.entitiesExternal">
+      <div class="md-toolbar-tools">
+        <h2>
+          <span>Editor de dominios</span>
+        </h2>
+        <span flex></span>
+            <button class="btn btn-default btn-addon" aria-label="Learn More" ng-click="showFAQs()">
+              <i class="fa fa-question"></i>
+              Ayuda
+              <md-tooltip>Ver preguntas frecuentes</md-tooltip>
+            </button>
+       </div>
+    </md-toolbar>
+<md-content class="md-padding" style="overflow: visible;">
+  <form name="userForm">
+    <div layout layout-sm="column">
+      <md-input-container flex>
+        <label>Nombre</label>
+        <input ng-model="catalog.name">
+      </md-input-container>
+      <md-input-container flex>
+        <label>Descripcion</label>
+        <input ng-model="catalog.description">
+      </md-input-container>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <label class="light-grey">Agregar reglas al escenario</label>
+        <div layout layout-sm="column">
+          <div flex="50">
+            <div isteven-multi-select
+              style="float: left;"
+              class="noBorderRadius"
+              max-labels="2"
+              max-height="150px"
+              input-model="notInCatalog.rules"
+              output-model="notInCatalog.rulesSelected" 
+              button-label="name"
+              item-label="name"
+              output-properties="id name"
+              tick-property="ticked">
+            </div>
+            <button class="btn btn-primary noBorderRadius" style="float: left;" ng-click="addRules()">
+              <i class="fa fa-plus"></i>
+              <md-tooltip md-direction="right">Agregar al dominio</md-tooltip>
+            </button>
+          </div>
+        </div>
+        <label class="light-grey">Reglas asociadas a este dominio</label>
+        <ul id="mainList">
+          <li ng-repeat="rule in catalog.rules">
+            <div class="btn-group propper-margin" style="margin-left: -3px;">
+              <button class="btn btn-default noBorderRadius" ng-hide="$first" ng-click="catalogUp($index, catalog.rules)"><i class="fa fa-chevron-up"></i></button>
+              <button class="btn btn-default noBorderRadius" ng-hide="$last" ng-click="catalogDown($index, catalog.rules)"><i class="fa fa-chevron-down"></i></button>
+            </div>
+            <span class="propper-form light-blue" style="padding-right: 6px;">{{rule.name}}</span>
+            <div class="btn-group propper-margin" style="margin-left: -3px;">
+              <button class="btn btn-danger noBorderRadius" ng-click="catalogRemove($index,'rule')" ng-hide="simulation.disabled">
+                <i class="fa fa-trash"></i>
+                <md-tooltip md-direction="right">Quitar regla del escenario</md-tooltip>
+              </button>
+            </div>
+          </li>
+        </ul>
+<!--         <div isteven-multi-select style="z-index:99999999;"
+          max-labels="2"
+          max-height="150px"
+          input-model="rules" 
+          output-model="catalog.rules" 
+          button-label="name" 
+          item-label="name"
+          output-properties="id name"
+          tick-property="ticked"> </div> -->
+      </div>
+      <div class="col-md-6">
+        <label class="light-grey">Agregar tablas al escenario</label>
+        <div layout layout-sm="column">
+          <div flex="50">
+            <div isteven-multi-select
+              style="float: left;"
+              class="noBorderRadius"
+              max-labels="2"
+              max-height="150px"
+              input-model="notInCatalog.tables"
+              output-model="notInCatalog.tablesSelected" 
+              button-label="name"
+              item-label="name"
+              output-properties="id name"
+              tick-property="ticked">
+            </div>
+            <button class="btn btn-primary noBorderRadius" style="float: left;" ng-click="addTables()">
+              <i class="fa fa-plus"></i>
+              <md-tooltip md-direction="right">Agregar al dominio</md-tooltip>
+            </button>
+          </div>
+        </div>
+        <label class="light-grey">Tablas de decisiones asociadas a este dominio</label>
+        <ul id="mainList">
+          <li ng-repeat="table in catalog.tables">
+            <div class="btn-group propper-margin" style="margin-left: -3px;">
+              <button class="btn btn-default noBorderRadius" ng-hide="$first" ng-click="catalogUp($index, catalog.tables)"><i class="fa fa-chevron-up"></i></button>
+              <button class="btn btn-default noBorderRadius" ng-hide="$last" ng-click="catalogDown($index, catalog.tables)"><i class="fa fa-chevron-down"></i></button>
+            </div>
+            <span class="propper-form light-blue" style="padding-right: 6px;">{{table.name}}</span>
+            <div class="btn-group propper-margin" style="margin-left: -3px;">
+              <button class="btn btn-danger noBorderRadius" ng-click="catalogRemove($index,'table')" ng-hide="simulation.disabled">
+                <i class="fa fa-trash"></i>
+                <md-tooltip md-direction="right">Quitar tabla del escenario</md-tooltip>
+              </button>
+            </div>
+          </li>
+        </ul>
+
+
+
+      </div>
+    </div>
+  </form>
+  <div class="row">
+  <div class="col-md-12" style="margin-top: 20px;">
+    <button md-ink-ripple class="btn btn-default btn-fw " ng-click="goBack()" style="float:right; margin-left: 15px;">Volver</button>       
+    <button md-ink-ripple class="btn btn-primary btn-addon btn-fw " ng-click="save()" style="float:right; margin-left: 15px;" >
+      <i class="fa fa-save"></i>
+      Guardar
+    </button>
+
+      <button ng-hide="$parent.entitiesExternal" md-ink-ripple type="button" class="btn btn-primary btn-fw btn-addon" ng-click="save('goBack')" style="float:right; margin-left:15px;">
+    <i class="fa fa-save"></i>
+    Guardar y volver
+  </button>
+  </div>
+  </div>

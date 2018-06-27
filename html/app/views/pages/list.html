@@ -1,0 +1,91 @@
+<ul class="breadcrumb bg-white b-a" ng-hide="$parent.entitiesExternal">
+  <li><a ui-sref="app.dashboard"><i class="fa fa-home"></i> Inicio</a></li>
+  <li><a ui-sref="app.lists">Constantes</a></li>
+  <li class="active">Editor de Constantes</li>
+</ul>
+<md-toolbar ng-hide="$parent.entitiesExternal">
+  <div class="md-toolbar-tools">
+    <h2>
+      <span>Constante</span>
+    </h2>
+    <span flex></span>
+    <button class="btn btn-default btn-addon" aria-label="Learn More" ng-click="showFAQs()">
+      <i class="fa fa-question"></i>
+      Ayuda
+      <md-tooltip>Ver preguntas frecuentes</md-tooltip>
+    </button>
+   </div>
+</md-toolbar>
+<md-content class="md-padding min-height-400">
+  <form name="userForm">
+    <div layout layout-sm="column">
+      <md-input-container flex>
+        <label>Nombre</label>
+        <input ng-model="list.name" name="name" ng-pattern="/^[a-z+A-Z+\s_0-9]+$/" required>
+        <div ng-messages="userForm.name.$error">
+          <div ng-message="pattern">Solo letras,numeros y guiones bajos son permitidos.</div>
+        </div>
+      </md-input-container>
+      <md-input-container flex style="margin-left:27px">
+        <label>Descripcion</label>
+        <input ng-model="list.description">
+      </md-input-container>
+      <div style="margin-left: 25px;">
+          <h5 class="cute" style="color: #666; text-align: center; margin-top: 18px; margin-right:10px;" tooltip="Tipo de datos que contiene la lista, tener en cuenta que es necesario que los tipos sean compatibles a la hora de realizar comparaciones en las reglas" tooltip-placement="bottom">
+          <button class="btn btn-default disabled btn-sm" ><i class="fa fa-question"></i></button>
+            Tipo:
+          </h5>
+      </div>
+      <div flex style="margin-right: 25px;">
+        <select class="form-control" ng-readonly="funct.id!=null" ng-disabled="funct.id!=null" ng-options="type as type.name for type in types" ng-model="activeType" style="margin-top: 16px;" ng-change="changedType()"></select>
+      </div>
+      <div>
+        <h5 class="cute" style="color: #666; text-align: center; margin-top: 18px; margin-right:0px;" tooltip="Cuando se encuentra activado permite una lista de constantes (lista de valores), si se encuentra desactivado únicamente permite agregar un solo valor en la constante" tooltip-placement="bottom">
+          <button class="btn btn-default disabled btn-sm"><i class="fa fa-question"></i></button>
+            Lista:
+        </h5>
+      </div>
+      <div flex="10" style="margin-top: 14px; padding-left: 20px">
+        <label class="ui-switch ui-switch-lg m-t-xs m-r">
+          <input type="checkbox" ng-model="list.list" ng-change="changedListProperty()">
+          <i></i>
+        </label>
+      </div>
+    </div>
+  </form>
+  <ng-form name="force">
+    <div>
+    </div>
+    <div layout layout="column">
+      <legend class="top-spacing" style="font-weight: 400;" flex="100">Elementos de la Lista</legend>
+    </div>
+    <div class="table-responsive m-b-lg">
+      <div ui-grid="gridOptionsSimple" ui-grid-pagination ui-grid-exporter ui-grid-auto-resize ui-grid-edit></div>
+    </div>
+  </ng-form>
+
+
+  <div layout layout-sm="column">
+  <div flex="100" style="margin-top: 20px;">
+    <button md-ink-ripple class="btn btn-default btn-fw" ng-click="goBack()" style="float:right; margin-left: 15px;">Volver</button>
+    <button md-ink-ripple class="btn btn-primary btn-addon btn-fw " ng-click="save()" style="float:right; margin-left: 15px;" >
+      <i class="fa fa-save"></i>
+      Guardar
+    </button>
+    <button ng-hide="$parent.entitiesExternal" md-ink-ripple type="button" class="btn btn-primary btn-fw btn-addon" ng-click="save('goBack')" style="float:right; margin-left:15px;">
+      <i class="fa fa-save"></i>
+      Guardar y volver
+    </button>
+    <button ng-hide="$parent.entitiesExternal" md-ink-ripple type="button" class="btn btn-primary btn-fw btn-addon" ng-click="viewSLA('goBack')" style="float:right; margin-left:15px;">
+      <i class="fa fa-info"></i>
+      Ver SLA
+    </button>
+  </div>
+  </div>
+  <md-button class="md-fab md-fab-bottom-right pos-fix indigo md-primary" aria-label="Insert Drive" ng-click="addElement()" ng-if="list.list||list.elements.length==0">
+      <i class="mdi-content-add i-24"></i>
+      <md-tooltip md-direction="left">
+        Agregar elemento
+      </md-tooltip>
+</md-button>
+</md-content>

@@ -1,0 +1,412 @@
+<ul class="breadcrumb bg-white b-a">
+          <li><a ui-sref="app.dashboard"><i class="fa fa-home"></i> Inicio</a></li>
+          <li><a ui-sref="app.rules">Reglas</a></li>
+          <li class="active">Editor de reglas</li>
+</ul>
+<div class="row row-sm">
+  <div class="col-sm-12">
+  <md-content style="margin-bottom: 25px">
+    <md-toolbar class="md-primary">
+      <div class="md-toolbar-tools">
+        <h3>
+          <span>EDITOR DE ENTIDADES</span>
+        </h3>
+        <span flex></span>
+        <select class="custom-select" ng-options="eventType.name for eventType in eventTypes" ng-model="entityEXT">
+        	<option value="" disabled selected style="display: none;">Seleccione para editar</option>
+        </select>
+	        <button ng-click="editEntity()" class="btn btn-default btn-addon noBorderRadius" aria-label="Favorite" style="font-size: 14px;">
+	          <i class="mdi-action-note-add ng-scope"></i>
+	          Editar entidad
+	        </button>
+        <button ng-click="addNewEntity()" class="btn btn-default btn-addon noBorderRadius" aria-label="Favorite" style="font-size: 14px;">
+          <i class="mdi-action-note-add ng-scope"></i>
+          Agregar Nueva entidad
+        </button>
+      </div>
+    </md-toolbar>
+    <div ng-show="displayEntity" ng-include="'views/pages/entity.html'" ng-controller="EntityController" style="margin-bottom: 20px"></div>
+  </md-content>
+  <!-- REGLAS -->
+  <md-content>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h3>
+          <span>REGLA</span>
+        </h3>
+        <span flex></span>
+	    <button class="btn btn-default btn-addon" aria-label="Learn More" ng-click="showFAQs()">
+	      <i class="fa fa-question"></i>
+	      Ayuda
+	      <md-tooltip>Ver preguntas frecuentes</md-tooltip>
+	    </button>
+       </div>
+    </md-toolbar>
+    <div class="panel panel-card p">
+    <!-- start: PAGE CONTENT -->
+		<ng-form name="main" class="col-md-12">
+	      <form name="userForm">
+	        <div layout layout-sm="column">
+	          <md-input-container flex="20">
+	            <label>Nombre</label>
+	            <input ng-model="name" name="name" ng-minlength="3"  ng-pattern="/^[a-zA-Z0-9_\s]+$/" required>
+		        <div ng-messages="userForm.name.$error">
+			      <div ng-message="required">Este campo es requerido.</div>
+			      <div ng-message="minlength">Debe contener al menos 3 caracteres.</div>
+			      <div ng-message="pattern">Solo debe contener letras, numeros y guiones bajos.</div>
+			    </div>
+	          </md-input-container>
+	          <md-input-container flex="25">
+	            <label>Descripcion</label>
+	            <input ng-model="description">
+	          </md-input-container>
+	          <div flex="10" ng-hide="atomic">
+	          	<h5 class="cute" style="color: #666; text-align: right; margin-top: 32px; margin-right:10px;">Dominio:</h5>
+	          </div>
+	          <div isteven-multi-select
+	            ng-hide="atomic"
+	          	style="margin-top: 20px"
+	          	input-model="catalogs"
+	          	output-model="catalog"
+	          	button-label="name"
+	          	item-label="name"
+	          	output-properties="id name"
+	          	selection-mode="single"
+	          	tick-property="ticked"
+	          	max-height="200px"
+	          	helper-elements="none filter">
+	          </div>
+
+	           <div flex="10">
+	          	<h5 class="cute" style="color: #666; text-align: right; margin-top: 32px; margin-right:10px;" tooltip="Instrumento normativo">Instrumento N.:</h5>
+	          </div>
+	          <div isteven-multi-select
+	          	style="margin-top: 20px"
+	          	input-model="instruments"
+	          	output-model="SelectedInstruments"
+	          	button-label="name"
+	          	item-label="name"
+	          	output-properties="id name"
+	          	tick-property="ticked"
+	          	max-height="200px"
+	          	helper-elements="none filter"> </div>
+	        </div>
+	        <div layout layout-sm="column">
+	          <div flex="15">
+		          <h5 class="cute" style="color: #666; text-align: right; margin-top: 18px; margin-right:10px;" >
+		          <button class="btn btn-sm" tooltip="Creará un dominio exclusivo para esta regla" tooltip-placement="right"><i class="fa fa-question"></i></button>
+		          	Regla atómica:
+		          </h5>
+	          </div>
+	          <div flex="10" style="margin-top: 14px; padding-left: 20px">
+	            <label class="ui-switch ui-switch-lg m-t-xs m-r">
+	              <input type="checkbox" ng-model="atomic">
+	              <i></i>
+	            </label>
+	          </div>
+	          <div flex="15">
+		          <h5 class="cute" style="color: #666; text-align: right; margin-top: 18px; margin-right:10px;" >
+		          <button class="btn btn-sm" tooltip="Cortará la evaluacion si esta regla se evalua correctamente en alguna ocasión." tooltip-placement="right"><i class="fa fa-question"></i></button>
+		          	Corte de regla:
+		          </h5>
+	          </div>
+	          <div flex="10" style="margin-top: 17px; padding-left: 20px">
+	            <label class="ui-switch ui-switch-lg m-t-xs m-r">
+	              <input type="checkbox" ng-model="halt">
+	              <i></i>
+	            </label>
+	          </div>
+	          <div flex="15">
+	           <h5 class="cute" style="color: #666; text-align: right; margin-top: 18px; margin-right:10px;" >
+		          <button class="btn btn-sm" tooltip="Creará una contra condicion automaticamente, la cual puede prevenir que la regla entre en un bucle de evaluación." tooltip-placement="right"><i class="fa fa-question"></i></button>
+		          	Contra Condicion:
+		          </h5>
+	          </div>
+	          <div flex="10" style="margin-top: 14px; padding-left: 20px">
+	            <label class="ui-switch ui-switch-lg m-t-xs m-r">
+	              <input type="checkbox" ng-model="contraCondicion">
+	              <i></i>
+	            </label>
+	          </div>
+
+	          	<div flex="15">
+	           <h5 class="cute" style="color: #666; text-align: right; margin-top: 18px; margin-right:10px;" >
+		          <button class="btn btn-sm" tooltip="La regla se evaluará una sola vez por cada uno de los objetos disponibles." tooltip-placement="right"><i class="fa fa-question"></i></button>
+		          	Alcance limitado:
+		          </h5>
+	          </div>
+	          <div flex="10" style="margin-top: 14px; padding-left: 20px">
+	            <label class="ui-switch ui-switch-lg m-t-xs m-r">
+	              <input type="checkbox" ng-model="limited">
+	              <i></i>
+	            </label>
+	          </div>
+
+	        </div>
+	        <!-- <div layout layout-sm="column"> -->
+
+	        <!-- </div> -->
+      	</form>
+			<legend>Condiciones</legend>
+			<div class="row">
+				<div class="col-md-4 no-padding">
+					<div style="text-align: center" style="font-size: 50%"><small class="cute">Condicion</small></div>
+				</div>
+				<div class="col-md-8 no-padding">
+					<div class="col-md-7 no-padding">
+						<div class="col-md-6 no-padding">
+							<div style="text-align: center"><small class="cute">Atributo</small></div>
+						</div>
+						<div class="col-md-6 no-padding">
+							<div style="text-align: center"><small class="cute">Valor</small></div>
+						</div>
+					</div>
+					<div class="col-md-4 no-padding">
+						<!-- <div style="text-align: center" style="font-size: 50%"><small class="cute">Restricciones</small></div> -->
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 repeated no-padding" ng-hide="advanced" >
+				<div ng-repeat="rule in rules" class="row main-row special">
+					<div class="cold-md-12 parentheses" ng-if="rule.parentesis">
+						<div class="btn-group">
+							<button class="btn btn-default btn-xs" ng-click="parenthesesUp($index)" tooltip-placement="bottom" tooltip="Subir paréntesis" ng-hide="$first">
+								<i class="fa fa-chevron-up"></i>
+							</button>
+							<button class="btn btn-default btn-xs" ng-click="parenthesesDown($index)" tooltip-placement="bottom" tooltip="Bajar paréntesis" ng-hide="$last">
+								<i class="fa fa-chevron-down"></i>
+							</button>
+							<button class="btn btn-default btn-xs" ng-click="removeRule($index)" tooltip-placement="bottom" tooltip="Eliminar paréntesis">
+								<i class="fa fa-trash"></i>
+							</button>
+						</div>
+						PARÉNTESIS
+					</div>
+					<div class="col-md-4 no-padding" ng-if="!rule.parentesis">
+						<div class="col-md-5 no-padding" style="text-align: right;">
+							<div class="btn-group">
+								<button class="btn btn-stroke indigo" ng-click="rule.connector='||'" ng-show="rule.connector=='AND'&&!$first&&  !rules[$index-1].parentesis" tooltip="conector"> Y </button>
+								<button class="btn btn-stroke blue" ng-click="rule.connector='AND'" ng-show="rule.connector=='||' && !$first && !rules[$index-1].parentesis" tooltip="conector">O</button>
+								<button md-ink-ripple ng-click="bindThis(rule, true)" ng-show="rule.binding" class="btn btn-stroke btn-primary noBorderRadius" tooltip="{{rule.binding}}" ng-class="{'btn-success': rule.binding}" style="  min-width: 38px;">
+									<i class="glyphicon glyphicon-link"></i> {{rule.binding.length>5?rule.binding.substr(0,5)+'...':rule.binding}}
+								</button>
+							</div>
+						</div>
+						<div class="col-md-7 no-padding">
+							<select type="text" name="nombre" class="eye-catcher form-control" ng-model="rule.rawType" ng-change="autoBindings()" ng-options="eventType.name for eventType in eventTypes"></select>
+						</div>
+					</div>
+					<div class="col-md-4 no-padding btn-group" ng-if="rule.conds.length==0&&!rule.parentesis">
+						<button md-ink-ripple ng-click="removeRule($index)" class="btn btn-stroke btn-danger btn-stroke noBorderRadius" tooltip="eliminar condición" ><i class="glyphicon glyphicon-minus"></i></button>
+						<button md-ink-ripple ng-click="addCondNoVerif(rule, $index)" class="btn btn-stroke btn-primary noBorderRadius" tooltip="Agregar restricción"><i class="glyphicon glyphicon-plus"></i></button>
+						<!-- <button md-ink-ripple ng-click="setTime(rule, 'windowTime')" ng-hide="rule.windowTime" class="btn btn-stroke btn-primary noBorderRadius" ng-if="$index==0" style="width: 37px;" ><i class="glyphicon glyphicon-time"></i></button> -->
+						<button md-ink-ripple ng-click="setTime(rule, 'windowTime')" ng-show="rule.windowTime" class="btn btn-stroke btn-success noBorderRadius" ng-if="$index==0" >{{rule.windowTime}}</button>
+					</div>
+					<div class="col-md-8 no-padding" ng-if="!rule.parentesis" ng-init="ruleIndex = $index">
+						<div ng-repeat="cond in rule.conds">
+							<!-- DIV SIN CEP -->
+							<div class="col-md-7 no-padding" ng-if="!cond.cep||cond.used" style="min-height: 41px;">
+								<div layout="row">
+									<button class="btn btn-stroke w-connector indigo noBorderRadius" ng-click="cond.connector='||'" ng-show="cond.connector=='&&'&&!$first" tooltip="conector">Y</button>
+									<button class="btn btn-stroke w-connector blue noBorderRadius" ng-click="cond.connector='&&'" ng-show="cond.connector=='||'&&!$first"tooltip="conector">O</button>
+
+									<!-- ATRIBUTOS -->
+									<div flex>
+										<select type="text" name="2" class="eye-catcher form-control"  ng-model="cond.attr" ng-options="item.name for item in rule.rawType.plainAttr" ng-change="attributeChanged(cond.attr.type, rule, cond)"></select>
+									</div>
+									<!-- OPERADOR -->
+									<div flex="20">
+										<!-- Otros -->
+										<select ng-hide="cond.attr.type =='integer' || cond.attr.type =='float' || cond.attr.type =='double' || cond.attr.type =='date' || (cond.attr.type =='string'&& cond.attr.name!='this')" type="text" class="form-control" ng-model="cond.operator" ng-options="conn for conn in connSelectableOther" ></select>
+										<!-- String -->
+										<select ng-show="(cond.attr.type =='string'&&cond.attr.name!='this')" type="text" class="form-control" ng-model="cond.operator" ng-options="conn for conn in connSelectableString" ></select>
+										<!-- Numerico -->
+										<select type="text" class="form-control" ng-model="cond.operator" ng-options="conn for conn in connSelectable" ng-show="cond.attr.type =='integer' || cond.attr.type =='float' ||cond.attr.type =='double'"></select>
+										<!-- Fecha -->
+										<select type="text" class="form-control" ng-model="cond.operator" ng-options="conn for conn in connSelectableDate" ng-show="cond.attr.type =='date'"></select>
+									</div>
+									<!-- MODO NORMAL - INPUT-->
+									<div flex="50" ng-show="(cond.attr.type == 'boolean' && (cond.value=='true' || cond.value=='false' || cond.value=='null')&& (cond.operator=='=='||cond.operator=='!=') && !cond.funct && !cond.formula )"> <select type="text" class="form-control" ng-model="cond.value"  ng-options="item.value as item.name for item in booleans"></select>
+									</div>
+	 								<div flex="50" ng-hide="(cond.operator=='en'||cond.operator=='no en'||cond.operator=='entre'||cond.funct||cond.formula||cond.attr.type == 'date' || (cond.attr.type == 'boolean' && (cond.value=='true' || cond.value=='false' || cond.value=='null')))" class="input-group">
+	 									<input type="text" 
+		 										ng-hide="cond.attr.type == 'date'" 
+		 										ng-model="cond.value" 
+		 										ng-change="validateInput(ruleIndex, $index, cond.value, cond.attr.type)"
+		 										typeahead="item for item in typeAheadList | filter:$viewValue | limitTo:8" class="form-control noright" 
+		 										typeahead-on-select="validateInput(ruleIndex, $index, cond.value, cond.attr.type)"
+		 										name="rule{{ruleIndex}}Cond{{$index}}">
+
+ 									    <div ng-messages="main['rule'+ruleIndex+'Cond'+$index].$error" role="alert" class="input-group-addon error" ng-hide="main['rule'+ruleIndex+'Cond'+$index].$valid">
+											<div ng-message="invalidBinding">
+												<i class="fa fa-exclamation-circle"></i>
+												<md-tooltip md-direction="bottom">
+												    El tipo del enlace no se corresponde con el tipo del atributo a comparar
+											    </md-tooltip>
+										    </div>
+											<div ng-message="invalidLength">
+												<i class="fa fa-exclamation-circle"></i>
+												<md-tooltip md-direction="bottom">
+												    El campo no puede estar vacío
+											    </md-tooltip>
+										    </div>
+											<div ng-message="invalidNumber">
+												<i class="fa fa-exclamation-circle"></i>
+												<md-tooltip md-direction="bottom">
+												    El valor introducido no es correcto, debe ser un numero válido
+											    </md-tooltip>
+										    </div>
+											<div ng-message="invalidBoolean">
+												<i class="fa fa-exclamation-circle"></i>
+												<md-tooltip md-direction="bottom">
+												    Un verdadero o falso solo puede ser comparado con true, false, null o un enlace del mismo tipo
+											    </md-tooltip>
+										    </div>
+  										</div>
+  										<div ng-show="main['rule'+ruleIndex+'Cond'+$index].$valid" class="input-group-addon success">
+  											<i class="fa fa-check"></i>
+											<md-tooltip md-direction="left">
+											    El valor introducido parece ser valido
+										    </md-tooltip>
+  										</div>
+	 								</div>
+									<!-- SOLO FECHAS -->
+	 								<div flex="50" ng-hide="(cond.operator=='en'||cond.operator=='no en'||cond.operator=='entre'||cond.funct||cond.formula||cond.attr.type != 'date')">
+	 									<button class="btn btn-input noBorderRadius btn-addon"  style="overflow: hidden; width: 100%;" ng-click="handleDate(cond, $event)"><i class="fa fa-pencil"></i>{{cond.value?cond.value:"Editar" | date:"dd/MM/yyyy" | makeLittle}}
+	 										<md-tooltip ng-if="cond.value!='' ">
+	 										  {{cond.value | date:"dd/MM/yyyy"}}
+	 										</md-tooltip>
+	 									</button>
+	 								</div>
+
+									<div flex="50" ng-show="(cond.funct&&cond.operator!='entre'&&cond.operator!='en'&&cond.operator!='no en')">
+										<!-- SOLO CUANDO ES FUNCION -->
+										<button class="btn btn-primary noBorderRadius btn-stroke disabled"  style="overflow: hidden; width: 100%;" ng-click="addFunction($event, cond)">Función: {{cond.funct.type}}({{cond.funct.fields[0].name.substr(0,5)}}...)</button>
+									</div>
+									<div flex="50" ng-show="(cond.formula&&cond.operator!='entre'&&cond.operator!='en'&&cond.operator!='no en')" >
+										<!-- SOLO CUANDO ES FORMULA -->
+										<button class="btn btn-primary noBorderRadius btn-stroke disabled" style="overflow: hidden; width: 100%;">Formula: {{cond.formula.name.substr(0,6)}}...</button>
+									</div>
+									<div ng-show="cond.operator=='entre'" flex="50">
+										<!-- SOLO CUANDO ES ENTRE/BETWEEN -->
+										<input ng-model="cond.value" typeahead="item for item in typeAheadList | filter:$viewValue | limitTo:8"  type="text" name="3" class="form-control typeahead custom-40">
+										<input type="text" name="3" class="form-control typeahead custom-20" disabled value="Y">
+										<input type="text" name="3" class="form-control typeahead custom-40" ng-model="cond.value2" typeahead="item for item in typeAheadList | filter:$viewValue | limitTo:8">
+									</div>
+									<div flex="50" ng-show="cond.operator=='en'||cond.operator=='no en'" >
+										<!-- fin SOLO CUANDO ES EN/NO-EN -->
+										<select type="text" class="form-control" ng-model="cond.memberOf" ng-options="list.name as list.name for list in lists[cond.attr.type]"></select>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-5 no-padding btn-group">
+								<i class="fa fa-warning btn" style="margin-left: -39px; background: transparent; color: #ED135A!important; border: none; padding-top: 7px;" ng-show="error"></i> <button md-ink-ripple ng-click="removeCond(rule, $index)" class="btn btn-stroke btn-danger btn-stroke noBorderRadius" tooltip="Eliminar restriccion"><i class="glyphicon glyphicon-minus"></i></button>
+								<button md-ink-ripple ng-click="addCond(rule, $index)" class="btn btn-stroke btn-primary noBorderRadius" ng-show="rule.conds.length==$index+1" tooltip="Agregar nueva restriccion" ><i class="glyphicon glyphicon-plus"></i></button>
+								<!-- BOTON FUNCION -->
+								<button md-ink-ripple ng-click="addFunction($event, cond)" class="btn btn-stroke btn-primary noBorderRadius" tooltip="Comparar con Funcion/Formula" ><i class="fa fa-cog"></i></button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<button class="btn btn-primary" style="margin-top:10px" ng-click="addRule()">Agregar condición</button>
+				<button class="btn btn-default" style="margin-top:10px" ng-click="addParentheses()">Agregar parentesis</button>
+				<div class="clear"></div>
+				<legend style="margin-top: 15px;">Acciones de esta regla</legend>
+				<div class="row">
+					<div class="col-md-2 no-padding">
+					</div>
+					<div class="col-md-4 no-padding">
+						<div style="text-align: center" style="font-size: 50%"><small class="cute">Acción</small></div>
+					</div>
+					<div class="col-md-4 no-padding">
+						<div style="text-align: center" style="font-size: 50%"><small class="cute">Valor</small></div>
+					</div>
+				</div>
+				<div class="row" ng-repeat="action in actions" style="margin-top: 10px;">
+					<div class="col-md-2">
+						<p ng-show="action.message" style="text-align: right; margin-top: 9px;">
+								<label class="cute">Mensaje:</label>
+						</p>
+						<p ng-hide="action.message" style="text-align: right; margin-top: 9px;">
+								<label class="cute">Modificar campo:</label>
+						</p>
+					</div>
+					<div class="col-md-4" ng-hide="action.message">
+						<select type="text" class="form-control cust-select" ng-options="name for (name, value) in bindings | removepc" ng-model="action.binding" >
+						</select>
+					</div>
+					<div class="col-md-4" ng-hide="action.message">
+						<input ng-hide="action.code||action.funct||action.formula" type="text" class="form-control cust-select" ng-model="action.value" placeholder="ingrese valor" typeahead="item for item in typeAheadConstants | filter:$viewValue | limitTo:8">
+						<button ng-show="action.code" class="btn btn-primary btn-stroke" style="width: 100%" ng-click="addFormula($event, action, false)">
+							Formula: {{action.value.substr(0,10)}}... <i class="fa fa-pencil"></i> Editar
+						</button>
+						<button ng-show="action.funct" class="btn btn-primary btn-stroke" style="width: 100%" ng-click="addFunction($event, action)">
+							Funcion {{action.funct.name.substr(0,10)}}... <i class="fa fa-pencil"></i> Editar
+						</button>
+						<button ng-show="action.formula" class="btn btn-primary btn-stroke" style="width: 100%" ng-click="addFunction($event, action)">
+							Formula {{action.formula.name.substr(0,10)}}... <i class="fa fa-pencil"></i> Editar
+						</button>
+					</div>
+					<div class="col-md-8" ng-show="action.message">
+						<input id="idMessage-{{$index}}" ng-hide="action.code" type="text" class="form-control cust-select" ng-model="action.value" placeholder="Ingrese su mensaje..." typeahead="item for item in typeAheadConstants | filter:$viewValue | limitTo:8">
+					</div>
+					<div class="col-md-2">
+						<button class="btn btn-primary btn-stroke" ng-hide="action.code||action.message||action.formula||action.funct" ng-click="addFormula($event, action, true)" tooltip="Escribir Formula"><i class="fa fa-file-code-o"></i></button>
+						<button md-ink-ripple ng-click="addFunction($event, action)" class="btn btn-stroke btn-primary noBorderRadius" tooltip="Asignar resultado de Funcion o Formula predefinida" ng-hide="action.code||action.message||action.formula||action.funct"><i class="fa fa-cog"></i></button>
+						<button class="btn btn-primary btn-stroke" ng-show="action.message" ng-click="addBindingToValue(action, $event)" tooltip="Añadir binding"><i class="glyphicon glyphicon-link"></i></button>
+						<button class="btn btn-danger" ng-click="removeAction($index)" tooltip="Eliminar acción"><i class="fa fa-trash"></i></button>
+					</div>
+				</div>
+				<button class="btn btn-primary" ng-click="addAction('modify')" ng-hide="showTemp" style="margin-top: 15px" tooltip="Agregar nueva modificación de campo"><i class="glyphicon glyphicon-plus"></i> Modificar un campo</button>
+				<button class="btn btn-default" ng-click="addAction('message')" ng-hide="showTemp" style="margin-top: 15px" tooltip="Agregar nueva modificación de campo"><i class="glyphicon glyphicon-plus"></i> Agregar mensaje</button>
+				<hr>
+				<button md-ink-ripple ng-hide="$parent.entitiesExternal" class="btn btn-default btn-fw " ng-click="goBack()" style="margin-left: 10px; float:right;">Volver</button>
+				<button md-ink-ripple type="button" class="btn btn-primary btn-addon btn-fw " style="float:right;  margin-left:15px;" ng-click="saveAll()">
+					<i class="fa fa-save"></i>
+					Guardar
+				</button>
+				<button ng-hide="$parent.entitiesExternal" md-ink-ripple type="button" class="btn btn-primary btn-fw btn-addon" ng-click="saveAll('goBack')" style="float:right; margin-left:15px;">
+				    <i class="fa fa-save"></i>
+				    Guardar y volver
+				</button>
+			</div>
+		</ng-form>
+
+		<div class="clear"></div>
+		<div class="modal fade" id="modalBinding">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button md-ink-ripple type="button" class="close" data-dismiss="modal" aria-label="Close">
+		        	<span aria-hidden="true">&times;</span>
+		        </button>
+		        <h4 class="modal-title">Enlace</h4>
+		      </div>
+		      <div class="modal-body">
+		      		<p>Ingrese enlace</p>
+					<div class="input-group">
+							<span class="input-group-addon">$</span>
+							<input type="text" class="form-control" ng-model="binding">
+					</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button md-ink-ripple type="button" class="btn btn-stroke btn-warning" data-dismiss="modal">Cancelar</button>
+		        <button md-ink-ripple type="button" class="btn btn-stroke btn-primary" ng-click="saveBinding(true);">Guardar</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<!-- end: PAGE CONTENT-->
+  	</div>
+  </div>
+</div>
+</md-content>
+<!-- <button md-ink-ripple class="md-btn btn-stroke md-fab md-fab-bottom-right pos-fix indigo" ng-click="addRule()" tooltip="Agregar condicion" ng-transclude="" aria-label="Insert Drive"><i class="mdi-content-add i-24"></i></button> -->
+<!-- <md-button class="md-fab md-fab-bottom-right pos-fix indigo md-primary" aria-label="Insert Drive" ng-click="addRule()">
+      <i class="mdi-content-add i-24"></i>
+      <md-tooltip md-direction="left">
+        Agregar Condicion
+      </md-tooltip>
+</md-button>  -->

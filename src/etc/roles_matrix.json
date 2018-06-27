@@ -1,0 +1,432 @@
+[
+    {
+        "path": "/security/token/create",
+        "user_profiles": ["ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR"]
+    },
+    {
+        "path": "/security/rxf/matrix",
+        "user_profiles": ["ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR"]
+    },
+    {
+        "path": "/security/user/get_roles",
+        "user_profiles": ["ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR"]
+    },
+    {
+        "path": "/anses/get_employee_office",
+        "user_profiles": ["ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR"]
+    },
+    {
+        "path": "/anses/get_office_children",
+        "user_profiles": ["ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR"]
+    },
+    {
+        "path": "/config/as_dict",
+        "user_profiles": ["ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR"]
+    },
+    {
+        "path": "/config/*",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR"]
+    },
+    {
+        "path": "/rulz/rule",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteRule"]
+    },
+    {
+        "path": "/rulz/entity",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteEntity"]
+    },
+    {
+        "path": "/rulz/check/entity/attribute",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteEntity"]
+    },
+    {
+        "path": "/rulz/catalog",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteCatalog"]
+    },
+    {
+        "path": "/rulz/table",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteTable"]
+    },
+    {
+        "path": "/rulz/simulation",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteSimulation"]
+    },
+    {
+        "path": "/rulz/simulation/model/get",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteSimulation"]
+    },
+    {
+        "path": "/rulz/simulation/jsons",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteSimulation"]
+    },
+    {
+        "path": "/rulz/list",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteList"]
+    },
+    {
+        "path": "/rulz/function",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteFunction"]
+    },
+    {
+        "path": "/rulz/function/test",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteFunction"]
+    },
+    {
+        "path": "/rulz/formula",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteFormula"]
+    },
+    {
+        "path": "/rulz/instrument",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteInstrument"]
+    },
+    {
+        "path": "/rulz/instrument/file/delete",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteInstrument"]
+    },
+    {
+        "path": "/rulz/simulate/*",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "RuleSimulate"]
+    },
+    {
+        "path": "/rulz/install/publication/*",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "RuleInstall"]
+    },
+    {
+        "path": "/rulz/uninstall/publication/*",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "RuleInstall"]
+    },
+    {
+        "path": "/snapshot/get/all",
+        "user_profiles": ["ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR"]
+    },
+    {
+        "path": "/snapshot/export",
+        "user_profiles": ["ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR"]
+    },
+    {
+        "path": "/snapshot/export/*",
+        "user_profiles": ["ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR"]
+    },
+    {
+        "path": "/snapshot/import",
+        "user_profiles": ["ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR"]
+    },
+    {
+        "path": "/snapshot/create/*",
+        "user_profiles": ["ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR"]
+    },
+    {
+        "path": "/snapshot/use",
+        "user_profiles": ["ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR"]
+    },
+    {
+        "path": "/snapshot/delete/*",
+        "user_profiles": ["ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR"]
+    },
+    {
+        "path": "/snapshot/edit/*",
+        "user_profiles": ["ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR"]
+    },
+    {
+        "path": "/rulz/drls_new",
+        "user_profiles": ["ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR"]
+    },
+    {
+        "path": "/rulz/drls",
+        "user_profiles": ["ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR"]
+    },
+    {
+        "path": "/rulz/drls/*/*",
+        "user_profiles": ["ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR"]
+    },
+    {
+        "path": "/rulz/test",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "RuleSimulate"]
+    },
+    {
+        "path": "/rulz/test/data",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "RuleSimulate"]
+    },
+    {
+        "path": "/rulz/test/install",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "RuleInstall"]
+    },
+    {
+        "path": "/rulz/test/uninstall",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "RuleInstall"]
+    },
+    {
+        "path": "/rulz/test/list",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadPublication"]
+    },
+    {
+        "path": "/rulz/install/*",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "RuleInstall"]
+    },
+    {
+        "path": "/rulz/uninstall/*",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "RuleInstall"]
+    },
+    {
+        "path": "/rulz/drl/rule",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadRule"]
+    },
+    {
+        "path": "/rulz/drl/table",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadTable"]
+    },
+    {
+        "path": "/rulz/drl/simulation",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadSimulation"]
+    },
+    {
+        "path": "/rulz/files/*/*",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteInstrument"]
+    },
+    {
+        "path": "/rulz/rule/all",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadRule"]
+    },
+    {
+        "path": "/rulz/table/all",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadTable"]
+    },
+    {
+        "path": "/rulz/catalog/all",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadCatalog"]
+    },
+    {
+        "path": "/rulz/simulation/all",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadSimulation"]
+    },
+    {
+        "path": "/rulz/entity/all",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadEntity"]
+    },
+    {
+        "path": "/rulz/list/all",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadList"]
+    },
+    {
+        "path": "/rulz/instrument/all",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadInstrument"]
+    },
+    {
+        "path": "/rulz/function/all",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadFunction"]
+    },
+    {
+        "path": "/rulz/formula/all",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadFormula"]
+    },
+    {
+        "path": "/rulz/publication/all",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadPublication"]
+    },
+    {
+        "path": "/rulz/rule/remove",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteRule"]
+    },
+    {
+        "path": "/rulz/table/remove",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteTable"]
+    },
+    {
+        "path": "/rulz/catalog/remove",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteCatalog"]
+    },
+    {
+        "path": "/rulz/simulation/remove",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteSimulation"]
+    },
+    {
+        "path": "/rulz/entity/remove",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteEntity"]
+    },
+    {
+        "path": "/rulz/list/remove",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteList"]
+    },
+    {
+        "path": "/rulz/instrument/remove",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteInstrument"]
+    },
+    {
+        "path": "/rulz/function/remove",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteFunction"]
+    },
+    {
+        "path": "/rulz/formula/remove",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WriteFormula"]
+    },
+    {
+        "path": "/rulz/publication/remove",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WritePublication"]
+    },
+    {
+        "path": "/rulz/drls/remove",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "WritePublication"]
+    },
+    {
+        "path": "/rulz/*/notincatalog",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadRule", "ReadTable", "ReadCatalog"]
+    },
+    {
+        "path": "/rulz/rule/*",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadRule"]
+    },
+    {
+        "path": "/rulz/table/*",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadTable"]
+    },
+    {
+        "path": "/rulz/catalog/*",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadCatalog"]
+    },
+    {
+        "path": "/rulz/simulation/*",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadSimulation"]
+    },
+    {
+        "path": "/rulz/entity/*",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadEntity"]
+    },
+    {
+        "path": "/rulz/list/*",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadList"]
+    },
+    {
+        "path": "/rulz/instrument/*",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadInstrument"]
+    },
+    {
+        "path": "/rulz/function/*",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadFunction"]
+    },
+    {
+        "path": "/rulz/formula/*",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadFormula"]
+    },
+    {
+        "path": "/rulz/publication/*",
+        "user_profiles": ["Aplicacion", "ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR", "ReadPublication"]
+    },
+    {
+        "path": "/auditory/registered_users",
+        "user_profiles": ["ADMINISTRADOR", "Usuario"],
+        "user_roles": ["ADMINISTRADOR"]
+    },
+    {
+        "path": "/auditory/search",
+        "user_profiles": ["ADMINISTRADOR", "Usuario"],
+        "user_roles": ["ADMINISTRADOR"]
+    },
+    {
+        "path": "/auditory/getdata/*",
+        "user_profiles": ["ADMINISTRADOR", "Usuario"],
+        "user_roles": ["ADMINISTRADOR"]
+    },
+    {
+        "path": "/auditory/getregistry/*",
+        "user_profiles": ["ADMINISTRADOR", "Usuario"],
+        "user_roles": ["ADMINISTRADOR"]
+    },
+    {
+        "path": "/api/register_key",
+        "user_profiles": ["ADMINISTRADOR", "Usuario"],
+        "user_roles": ["ADMINISTRADOR"]
+    },
+    {
+        "path": "/api/all_keys",
+        "user_profiles": ["ADMINISTRADOR", "Usuario"],
+        "user_roles": ["ADMINISTRADOR"]
+    },
+    {
+        "path": "/api/delete_key/*",
+        "user_profiles": ["ADMINISTRADOR", "Usuario"],
+        "user_roles": ["ADMINISTRADOR"]
+    },
+    {
+        "path": "/rulz/count/*",
+        "user_profiles": ["ADMINISTRADOR","EDITOR", "PUBLICADOR","Usuario"],
+        "user_roles": ["PUBLICADOR", "ADMINISTRADOR", "EDITOR"]
+    }
+]

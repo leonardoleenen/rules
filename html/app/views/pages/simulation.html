@@ -1,0 +1,177 @@
+<div layout="row">
+  <div flex="100">
+    <ul class="breadcrumb bg-white b-a" ng-hide="$parent.entitiesExternal">
+      <li><a hui-sref="app.dashboard"><i class="fa fa-home"></i>Inicio</a></li>
+      <li><a ui-sref="app.simulations">Escenarios</a></li>
+      <li class="active">Editor de Escenarios</li>
+    </ul>
+  </div>
+</div>
+<div layout="row">
+  <div flex="100">
+    <md-toolbar ng-hide="$parent.entitiesExternal">
+      <div class="md-toolbar-tools">
+        <h2>
+          <span>Escenario {{simulation.disabled?"(Desactivado)": ""}}</span>
+        </h2>
+        <span flex></span>
+        <button class="btn btn-default btn-addon" aria-label="Learn More" ng-click="showFAQs()">
+          <i class="fa fa-question"></i>
+          Ayuda
+          <md-tooltip>Ver preguntas frecuentes</md-tooltip>
+        </button>
+       </div>
+    </md-toolbar>
+    <md-content class="md-padding">
+      <div class="alert alert-danger" ng-show="simulation.disabled">
+        <b>El escenario quedó desactivado debido a la modificación de una entidad participante.</b>
+      </div>
+      <form name="userForm">
+        <div layout layout-sm="column">
+          <md-input-container flex="30">
+            <label>Nombre</label>
+            <input ng-model="simulation.name">
+          </md-input-container>
+          <md-input-container flex="40">
+            <label>Descripcion</label>
+            <input ng-model="simulation.description">
+          </md-input-container>
+          <md-input-container flex="30" ng-if="!autoVersion">
+            <label>Numero de versión</label>
+            <input type="number" ng-model="simulation.version">
+          </md-input-container>
+          <md-input-container flex="30" ng-if="autoVersion">
+            <label >Versión {{simulation.version}}</label>
+
+          </md-input-container>
+        </div>
+        <div layout layout-sm="column" ng-if="!requireInstrument" style="margin-bottom: 30px;">
+          <div flex="30">
+            <label class="light-grey">Fecha Inicio</label>
+            <md-datepicker ng-model="simulation.initial_date" md-placeholder="Inicio" flex="20"></md-datepicker>
+          </div>
+          <div flex="50">
+            <label class="light-grey">Fecha finalización de las reglas</label>
+            <md-datepicker ng-model="simulation.ending_date" md-placeholder="Finalizacion" flex="20"></md-datepicker>
+          </div>
+        </div>
+        <div layout layout-sm="column" ng-hide="simulation.disabled">
+          <div flex="100">
+             <h5 class="light-grey" style="margin-top: 0px">Agregar Dominios a esta simulación</h5>
+          </div>
+        </div>
+        <div layout layout-sm="column" ng-hide="simulation.disabled">
+          <div flex="50">
+            <div isteven-multi-select
+              style="float: left;"
+              class="noBorderRadius"
+              input-model="catalogs"
+              output-model="tempCatalogs"
+              button-label="name"
+              item-label="name"
+              output-properties="id name"
+              tick-property="ticked">
+            </div>
+            <button class="btn btn-primary noBorderRadius" style="float: left;" ng-click="addCatalogs()">
+              <i class="fa fa-plus"></i>
+              <md-tooltip md-direction="right">Agregar al escenario</md-tooltip>
+            </button>
+          </div>
+
+        </div>
+        <div layout layout-sm="column">
+          <div flex="100">
+            <h5 class="light-grey">Dominios agregados</h5>
+
+            <ul id="mainList">
+              <li ng-repeat="catalog in simulation.catalogs">
+                <div class="btn-group propper-margin" style="margin-left: -3px;">
+                  <button class="btn btn-default noBorderRadius" ng-show="$index>0" ng-click="catalogUp($index)"><i class="fa fa-chevron-up"></i></button>
+                  <button class="btn btn-default noBorderRadius" ng-hide="$index==simulation.catalogs.length-1" ng-click="catalogDown($index)"><i class="fa fa-chevron-down"></i></button>
+                </div>
+                <span class="propper-form light-blue" style="padding-right: 6px;">{{catalog.name}}</span>
+                <div class="btn-group propper-margin" style="margin-left: -3px;">
+                  <button class="btn btn-danger noBorderRadius" ng-click="catalogRemove($index)" ng-hide="simulation.disabled">
+                    <i class="fa fa-trash"></i>
+                    <md-tooltip md-direction="right">Quitar Dominio del escenario</md-tooltip>
+                  </button>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </form>
+      <h5 class="light-grey">Objetos del escenario de pruebas <button class="btn btn-danger btn-xs" ng-click="removeAllObjects()"><i class="fa fa-trash"></i>Eliminar todos</button></h5>
+      <div class="light-grey">
+          No hay objetos cargados al escenarios
+      </div>
+      <md-virtual-repeat-container id="vertical-container" style="height: 500px" md-auto-shrink="true" ng-if="collection.length > 0">
+        <div  md-virtual-repeat="item in collection">
+          <div class="light-grey virtual-repeat-spacer">
+            Entidad {{$index+1}}: {{item.name}}
+            <a class="btn btn-danger btn-xs" ng-click="removeObject($index)" ng-hide="simulation.disabled">
+              <i class="fa fa-trash"></i>
+              <md-tooltip>Borrar objeto<md-tooltip>
+            </a>
+            <a class="btn btn-default btn-xs" ng-click="editFact($event, item, $index)">
+              <i class="fa fa-pencil"></i>
+              <md-tooltip>Visualizar/Editar objeto<md-tooltip>
+            </a>
+          </div>
+        </div>
+      </md-virtual-repeat-container>
+      <!-- OBJETOS DESDE SERVICIO REST -->
+      <h5 class="light-grey" >Servicios HTTP de obtención de objetos</h5>
+      <div class="light-grey" ng-if="simulation.sources.services.length < 1">
+          No hay servicios HTTP cargados al escenarios
+      </div>
+
+      <div class="light-grey virtual-repeat-spacer" ng-repeat="item in simulation.sources.services">
+          <a href="" class="btn btn-info btn-xs">
+            GET
+            <md-tooltip>
+              Metodo
+            </md-tooltip>
+          </a>
+          
+          SERVICIO {{$index+1}}: {{item.url}}
+          
+          <a class="btn btn-danger btn-xs" ng-click="removeHttp($index)" ng-hide="simulation.disabled">
+            <i class="fa fa-trash"></i>
+            <md-tooltip>Borrar servicio<md-tooltip>
+          </a>
+          <a class="btn btn-default btn-xs" ng-click="addHttp(item)">
+            <i class="fa fa-pencil"></i>
+            <md-tooltip>Visualizar/Editar servicio<md-tooltip>
+          </a>
+      </div>
+      <!-- OBJETOS DESDE EXCEL -->
+      <h5 class="light-grey" >Archivos Excel cargados (XLS)</h5>
+      <div class="light-grey" ng-if="simulation.sources.files.length < 1">
+          No hay archivos cargados al escenarios
+      </div>
+
+      <div class="light-grey virtual-repeat-spacer" ng-repeat="item in simulation.sources.files">
+          
+          Archivo {{$index+1}}: {{item.filename}}
+          
+          <a class="btn btn-danger btn-xs" ng-click="removeFile($index)" ng-hide="simulation.disabled">
+            <i class="fa fa-trash"></i>
+            <md-tooltip>Borrar archivo<md-tooltip>
+          </a>
+      </div>
+      <div layout="row" style="margin-top: 20px;">
+        <span class="btn btn-fw btn-addon btn-info" ng-click="showOptions()" tooltip-placement="right" ng-hide="simulation.disabled"><i class="fa fa-plus"></i>Agregar desde</span><br>
+      </div>
+      <br>
+      <a md-ink-ripple class="btn btn-fw btn-default" ng-click="goBack()" style="float:right; margin-left: 15px;">Volver</a>
+      <a md-ink-ripple class="btn btn-fw btn-addon btn-primary" style="float:right; margin-left: 15px;"  ng-click="publish($event)" ng-hide="(simulation.id == null ||securityMatrix.indexOf('BTN_PUBLICAR_ESCENARIO') == -1||simulation.disabled)"><md-tooltip>Realizar publicación a partir del escenario</md-tooltip><i class="fa fa-power-off"></i> Publicar</a>
+      <a md-ink-ripple class="btn btn-fw btn-addon btn-primary" style="float:right; margin-left: 15px;" ng-click="testSim($event)" ng-hide="(simulation.id == null || simulation.disabled)"><i class="fa fa-play"></i> Simular</a>
+      <a md-ink-ripple class="btn btn-fw btn-addon btn-primary" ng-click="save()" style="float:right; margin-left:15px;" ng-hide="simulation.disabled"><i class="fa fa-floppy-o"></i> Guardar</a>
+      <a ng-hide="$parent.entitiesExternal" md-ink-ripple type="button" class="btn btn-primary btn-fw btn-addon" ng-click="save(undefined, 'goBack')" style="float:right; margin-left:15px;">
+        <i class="fa fa-save"></i>
+        Guardar y volver
+      </a>
+    </md-content>
+  </div>
+</div>

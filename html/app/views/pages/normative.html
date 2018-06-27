@@ -1,0 +1,147 @@
+<div layout="row">
+  <div flex="100">
+    <ul class="breadcrumb bg-white b-a" ng-hide="$parent.entitiesExternal">
+      <li><a ui-sref="app.dashboard"><i class="fa fa-home"></i> Inicio</a></li>
+      <li><a ui-sref="app.normatives">Instrumentos</a></li>
+      <li class="active">Editor de Instrumentos</li>
+    </ul>
+  </div>
+</div>
+
+<div layout="row">
+  <div flex="100">
+    <md-toolbar ng-hide="$parent.entitiesExternal">
+      <div class="md-toolbar-tools">
+        <h2>
+          <span>Instrumento Normativo</span>
+        </h2>
+        <span flex></span>
+        <button class="btn btn-default btn-addon" aria-label="Learn More" ng-click="showFAQs()">
+          <i class="fa fa-question"></i>
+          Ayuda
+          <md-tooltip>Ver preguntas frecuentes</md-tooltip>
+        </button>
+      </div>
+    </md-toolbar>
+
+    <md-content class="md-padding">
+
+    <form name="userForm">
+      <div layout layout-sm="column">
+        <md-input-container flex="40">
+          <label>Nombre</label>
+          <input ng-disabled="(instrument.id!=null)"  ng-class="{'input-disabled' : instrument.id!=null}" ng-model="instrument.name">
+        </md-input-container>
+        <div flex="10">
+          <h5 class="cute" style="color: #666; text-align: right; margin-top: 28px; margin-right:10px;">Reglas:</h5>
+        </div>
+        <div isteven-multi-select
+        style="margin-top: 14px"
+        input-model="rules"
+        output-model="selectedRules"
+        button-label="name"
+        item-label="name"
+        output-properties="id name"
+        tick-property="ticked"
+        helper-elements=""> </div>
+
+        <div flex="10">
+        <h5 class="cute" style="color: #666; text-align: right; margin-top: 28px; margin-right:10px;">Tablas:</h5>
+      </div>
+        <div isteven-multi-select
+        style="margin-top: 14px"
+        input-model="tables"
+        output-model="selectedTables"
+        button-label="name"
+        item-label="name"
+        output-properties="id name"
+        tick-property="ticked"
+        helper-elements=""> </div>
+
+      </div>
+      <div layout layout-sm="column">
+        <div flex="30">
+          <label style="margin-bottom: 0px"><small class="cute" style="font-size:11px !important;">Fecha de firmado</small></label>
+          <md-datepicker ng-model="instrument.signature_date" md-placeholder="Firmado" flex="20"></md-datepicker>
+        </div>
+        <div flex="30">
+          <label style="margin-bottom: 0px"><small class="cute" style="font-size:11px !important;">Fecha de vigencia</small></label>
+          <md-datepicker ng-model="instrument.vigency_date" md-placeholder="Vigencia" flex="20"></md-datepicker>
+        </div>
+      </div>
+      <div layout layout-sm="column">
+        <div flex="30">
+          <label style="margin-bottom: 0px"><small class="cute" style="font-size:11px !important;">Fecha de Aplicacion</small></label>
+          <md-datepicker ng-model="instrument.application_date" md-placeholder="Aplicacion" flex="20"></md-datepicker>
+        </div>
+        <div flex="30">
+          <label style="margin-bottom: 0px"><small class="cute" style="font-size:11px !important;">Fecha de Finalización</small></label>
+          <md-datepicker ng-model="instrument.ending_date" md-placeholder="Finalización" flex="20"></md-datepicker>
+        </div>
+      </div>
+      <div layout layout-sm="column" style="margin-top:15px">
+        <label style="margin-bottom: 0px"><small class="cute" style="font-size:14px !important;">Descripcion</small></label>
+      </div>
+      <div layout layout-sm="column">
+        <md-input-container flex="100">
+          <textarea rows="7" cols="50" ng-model="instrument.description" class="goodness">
+          </textarea>
+        </md-input-container>
+      </div>
+    </form>
+
+    <div layout layout-sm="column">
+
+      <h3 flex="50"><small class="cute">Carga de archivos:</small></h3><br>
+      <h3 flex="50"><small class="cute">Archivos cargados:</small></h3><br>
+    </div>
+    <div layout layout-sm="column">
+      <!-- <form name="form"> -->
+        <label id="uploadButton" for="input-file-up" class="btn btn-primary">Seleccione los Archivos </label>
+        <input id="input-file-up" accept=".zip, .rar, .json, .doc, .docx, .pdf, .rtf, .odt, .xls, .xlsx, .csv, .jpg, .gif, .mp4, .flv, .tar, .gz" style="display:none;" type="file" ng-model="files" name="files" multiple base-sixty-four-input>
+      <!-- </form> -->
+    </div>
+
+    <div layout layout-sm="column">
+      <div flex="45" style="margin-left: 10px;">
+        <h4>Archivos seleccionados</h4>
+        <ul id="mainList">
+          <li ng-repeat="f in files track by $index" style="font:smaller">
+            <span class="propper-form blue noBorderRadius" style="padding-right: 10px;">
+              {{nameToShow(f.filename)}}
+              <md-tooltip>{{f.filename}}</md-tooltip>
+            </span>
+            <div class="btn-group propper-margin" style="margin-left: -4px;">
+              <button class="btn btn-danger noBorderRadius" ng-click="files.splice($index,1)"><i class="fa fa-trash"></i></button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div flex="45" style="margin-left: 10px;">
+        <ul id="mainList">
+          <li ng-repeat="file in instrument.files">
+            <span class="propper-form blue noBorderRadius" style="padding-right: 10px;">
+              {{nameToShow(file.name)}} ({{sizeOnKb(file.size)}})
+              <md-tooltip>{{file.name}}</md-tooltip>
+            </span>
+          <!-- <a class="propper-form blue noBorderRadius" style="padding-right: 10px;" href="/rulz/files/{{instNameForPath}}/{{file.name}}">{{file.name}}</a> -->
+            <div class="btn-group propper-margin" style="margin-left: -4px;">
+              <button class="btn btn-succes noBorderRadius" ng-click="downloadFile(instNameForPath,file.name,file.filetype)"><i class="fa fa-download"></i></button>
+              <button class="btn btn-danger noBorderRadius" ng-click="delFile($index,file.name)"><i class="fa fa-trash"></i></button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+      <button md-ink-ripple ng-hide="$parent.entitiesExternal" class="btn btn-fw btn-default" ng-click="goBack()" style="float:right; margin-left: 15px;">Volver</button>
+      <button md-ink-ripple type="button" class="btn btn-primary btn-addon btn-fw " ng-click="save()" style="float:right; margin-left:15px;"><i class="fa fa-save"></i>
+        Guardar
+      </button>
+      <button ng-hide="$parent.entitiesExternal" md-ink-ripple type="button" class="btn btn-primary btn-fw btn-addon" ng-click="save('goBack')" style="float:right; margin-left:15px;">
+    <i class="fa fa-save"></i>
+    Guardar y volver
+  </button>
+    </md-content>
+  </div>
+</div>

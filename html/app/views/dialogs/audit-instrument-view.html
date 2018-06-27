@@ -1,0 +1,89 @@
+<md-dialog aria-label="List dialog" ng-cloak flex="80">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Instrumento Normativo: {{instrument.name}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">X</md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+
+        <div class="md-dialog-content">
+
+            <!-- start: PAGE CONTENT -->
+
+            <form name="userForm">
+
+                <div layout layout-sm="column">
+
+                    <div flex="20">
+                    <h5 class="cute" style="color: #666; text-align: right; margin-top: 28px; margin-right:10px;">Reglas: {{instrument.rules}}</h5>
+                    </div>
+
+                    <div flex="20">
+                    <h5 class="cute" style="color: #666; text-align: right; margin-top: 28px; margin-right:10px;">Tablas: {{instrument.tables}}</h5>
+                    </div>
+
+                </div>
+
+                <div layout layout-sm="column">
+                    <div flex="30">
+                        <label style="margin-bottom: 0px"><small class="cute" style="font-size:11px !important;">Fecha de firmado</small></label>
+                        <md-datepicker disabled ng-model="instrument.signature_date" md-placeholder="Firmado" flex="20"></md-datepicker>
+                    </div>
+
+                    <div flex="30">
+                        <label style="margin-bottom: 0px"><small class="cute" style="font-size:11px !important;">Fecha de vigencia</small></label>
+                        <md-datepicker disabled ng-model="instrument.vigency_date" md-placeholder="Vigencia" flex="20"></md-datepicker>
+                    </div>
+                </div>
+
+                <div layout layout-sm="column">
+                    <div flex="30">
+                        <label style="margin-bottom: 0px"><small class="cute" style="font-size:11px !important;">Fecha de Aplicacion</small></label>
+                        <md-datepicker disabled ng-model="instrument.application_date" md-placeholder="Aplicacion" flex="20"></md-datepicker>
+                    </div>
+
+                    <div flex="30">
+                        <label style="margin-bottom: 0px"><small class="cute" style="font-size:11px !important;">Fecha de Finalización</small></label>
+                        <md-datepicker disabled ng-model="instrument.ending_date" md-placeholder="Finalización" flex="20"></md-datepicker>
+                    </div>
+                </div>
+
+                <div layout layout-sm="column">
+                    <md-input-container flex="100">
+                        <label>Descripcion</label>
+                        <textarea disabled rows="7" cols="50" ng-model="instrument.description" class="goodness">
+                        </textarea>
+                    </md-input-container>
+                </div>
+
+            </form>
+
+            <div layout layout-sm="column">
+                <h3 flex="50"><small class="cute">Archivos cargados:</small></h3><br>
+            </div>
+
+            <div layout layout-sm="column">
+                <div flex="45" style="margin-left: 10px;">
+                    <ul id="mainList">
+                        <li ng-repeat="file in instrument.files">
+                        <span class="propper-form blue noBorderRadius" style="padding-right: 10px;">
+                        {{nameToShow(file.name)}} ({{sizeOnKb(file.size)}})
+                        <md-tooltip>{{file.name}}</md-tooltip>
+                        </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <!-- end: PAGE CONTENT-->
+
+        </div>
+
+    </md-dialog-content>
+
+</md-dialog>

@@ -1,0 +1,43 @@
+<md-dialog ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>SLA constantes</h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+    <md-dialog-content layout="column">
+      <div class="md-dialog-content" ng-hide="json">
+          <div class="rest">
+            <div layout layout-sm="column">
+              <h4 >URL:</h4>
+              <span flex></span>
+            </div>
+            <pre><i class="fa fa-link"></i>{{service.url}}</pre>
+            <div layout layout-sm="column">
+              <span flex></span>
+              <small>Metodo </small>
+              <span style="margin-left:5px" class="badge bg-primary noBorderRadius ng-binding">{{service.method}}</span>
+              <small style="margin-left:5px">Encabezados </small>
+              <span style="margin-left:5px" class="badge bg-primary noBorderRadius ng-binding">
+              {"Content-Type": "application/json": "Authorization": "GENERAR-APP-KEY"}</span>
+            </div>
+            <div>
+              <br>
+              <h4>
+                Cuerpo del request
+                <button class="btn btn-default btn-sm">?</button>
+                <md-tooltip>Ejemplo de body que se debe enviar al servicio HTTP, el json mostrado refleja el estado actual de la constante</md-tooltip>
+              </h4>
+              <pre>{{service.body | json}}</pre>
+            </div>
+          </div>
+
+          <br>
+      </div>
+    </md-dialog-content>
+    <div class="md-actions">
+      <md-button ng-click="hide()" class="md-primary">
+        Aceptar
+      </md-button>
+    </div>
+</md-dialog>

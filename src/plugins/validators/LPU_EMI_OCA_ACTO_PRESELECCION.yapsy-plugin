@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_ACTO_PRESELECCION
+Module = LPU_EMI_OCA_ACTO_PRESELECCION
+[Documentation]
+
+Description = LPU_EMI_OCA_ACTO_PRESELECCION
+Author = asdf
+Version = 0.1
+Organization = jgm - ArDifusion

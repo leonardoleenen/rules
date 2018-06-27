@@ -1,0 +1,18 @@
+"obtener token": {"url": "http://suma-test.aduana.gob.bo/b-sso/rest/autenticar/portal?operador=undefined", "data": {"nombreUsuario":"aduana1","password":"aduana","tipo":"INTERNO"}}
+
+"datos de headers": {
+    "Auth-Token": "6fe3e099-35a3-4fbb-bdb5-1a8aa88c41b3",
+    "User": "ADUANA1"
+    }
+
+"obtener datos de usuario": {
+    "en header": {"Auth-Token": "6fe3e099-35a3-4fbb-bdb5-1a8aa88c41b3",
+    "User": "ADUANA1"},
+    "url": "http://suma-test.aduana.gob.bo/b-sso/rest/usuarios/oce/{user}}"
+}
+
+"obtener roles": {
+    "en header": {"Auth-Token": "6fe3e099-35a3-4fbb-bdb5-1a8aa88c41b3",
+    "User": "ADUANA1"},
+    "url": "http://suma-test.aduana.gob.bo/b-sso/rest/autenticar/verificar/{token}"
+}

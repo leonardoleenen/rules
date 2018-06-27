@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_RELATION_18733
+Module = LPU_EMI_OCA_RELATION_18733
+[Documentation]
+
+Description = Vigente a Apertura ..
+Author = SK
+Version = 0.1
+Organization = jgm - ArDifusion

@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_ACTO_PRESELECT
+Module = LPU_EMI_OCA_ACTO_PRESELECT
+[Documentation]
+
+Description = ACTO DE PRESELECCION
+Author = dev_user
+Version = 0.1
+Organization = ardifusion - ArDifusion

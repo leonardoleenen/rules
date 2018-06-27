@@ -1,0 +1,29 @@
+<md-dialog aria-label="List dialog" flex="50">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>Importar exportar escenario</h2>
+          <span flex></span>
+          <md-button class="md-icon-button" ng-click="closeDialog()">
+          </md-button>
+        </div>
+      </md-toolbar>
+    <md-dialog-content ng-show="!action.type">
+        <div class="md-dialog-content">
+            <h4 class="cute">¿Que desea hacer?</h4>
+            <label ng-if="fileImport==undefined" id="uploadButton" for="import-file" class="btn btn-fw btn-addon btn-primary space-left" style="margin: 11px 0px;"><i class="fa fa-upload"></i>Seleccionar archivo para importar...</label>
+            <input id="import-file" style="display:none;" accept=".xls, .xlsx" type="file" ng-model="fileImport" name="file" base-sixty-four-input>
+            <button ng-if="fileImport!=undefined" class="btn btn-fw btn-addon btn-success" style="margin: 11px 0px;" ng-click="import()">
+              <i class="fa fa-upload"></i>Importar archivo
+            </button>
+            <button class="btn btn-default" ng-click="exportModel()">Descargar modelo</button>
+        </div>
+    </md-dialog-content>
+    <div class="md-actions">  
+        <md-button ng-click="saveAction()" class="md-primary"> 
+            Guardar 
+        </md-button> 
+        <md-button ng-click="closeDialog()" class="md-primary"> 
+            Cerrar 
+        </md-button> 
+    </div> 
+</md-dialog>

@@ -1,0 +1,75 @@
+<md-dialog aria-label="List dialog" flex="50">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>Reglas/Tablas que utilizan la entidad</h2>
+          <span flex></span>
+          <md-button class="md-icon-button" ng-click="closeDialog()">
+          </md-button>
+        </div>
+      </md-toolbar>
+    <md-dialog-content ng-show="!action.type">
+      <div class="md-dialog-content">
+       <h5 class="light-grey">
+            Reglas:
+       </h5>
+       <ul id="mainList">
+         <li ng-repeat="value in array.rules">
+             <span class="propper-form blue">
+              <span ng-if="key!='type'" class="ng-binding ng-scope">Regla:  {{value.rule_name}}</span>
+            </span>
+            <div class="btn-group propper-margin">
+                  <a class="btn btn-default noBorderRadius" ui-sref="app.rulesEditor({rule: value.id})" target="_blank" aria-hidden="true">
+                    <i class="fa fa-external-link"></i>
+                    <md-tooltip md-direction="right">
+                      Ver regla afectada (abrir en nueva pestaña)
+                    </md-tooltip>
+                  </a>
+            </div>
+            <ul>
+              <li ng-repeat="item in value.attrs">
+                <span class="propper-form blue-100">
+                  <span ng-if="key!='type'" class="ng-binding ng-scope">Atributo: {{item}}</span>
+                </span>
+                <div class="btn-group propper-margin">
+                  <button ng-hide="value.adding || value.type!='object'" class="btn btn-default noBorderRadius ng-hide" aria-hidden="true"><i class="fa fa-plus"></i></button>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <h5 class="light-grey">
+            Tablas:
+       </h5>
+       <ul id="mainList">
+         <li ng-repeat="value in array.tables">
+             <span class="propper-form blue">
+              <span ng-if="key!='type'" class="ng-binding ng-scope">Tabla:  {{value.table_name}}</span>
+            </span>
+            <div class="btn-group propper-margin">
+                  <a class="btn btn-default noBorderRadius" ui-sref="app.decisionTable({table: value.id})" target="_blank" aria-hidden="true">
+                    <i class="fa fa-external-link"></i>
+                    <md-tooltip md-direction="right">
+                      Ver tabla afectada (abrir en nueva pestaña)
+                    </md-tooltip>
+                  </a>
+            </div>
+            <ul>
+              <li ng-repeat="item in value.attrs">
+                <span class="propper-form blue-100">
+                  <span ng-if="key!='type'" class="ng-binding ng-scope">Atributo: {{item}}</span>
+                </span>
+                <div class="btn-group propper-margin">
+                  <button ng-hide="value.adding || value.type!='object'" class="btn btn-default noBorderRadius ng-hide" aria-hidden="true"><i class="fa fa-plus"></i></button>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </md-dialog-content>
+    <div class="md-actions">
+        <md-button ng-click="accept()" class="md-primary">
+            Aceptar
+        </md-button>
+    </div>
+</md-dialog>

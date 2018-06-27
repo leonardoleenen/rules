@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_RELATION_20938
+Module = LPU_EMI_OCA_RELATION_20938
+[Documentation]
+
+Description = xx Pliego a Convocatoria
+Author = undefined
+Version = 0.1
+Organization = jgm - ArDifusion

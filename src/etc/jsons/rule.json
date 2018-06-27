@@ -1,0 +1,90 @@
+{
+    "name": "Persona Valida",
+    "contraCondicion":true,
+    "actions": [
+        {
+            "binding": {
+                "name": "bind2.nro_beneficio",
+                "type": "string"
+            },
+            "value": "3591777",
+            "code" : true //indica que es una formula/codigo drools explicita/literal.
+        }
+    ],
+    "rules": [
+        {
+            "parentesis": false
+        },
+        {
+            "type": "NuevaPersona",
+            "conds": [
+                {
+                    "attr": {
+                        "name": "documento.nro_documento",
+                        "type": "integer"
+                    },
+                    "value": "34917399",
+                    "operator": "==",
+                    "binding": "",
+                    "used": false,
+                    "connector": "&&"
+                },
+                {
+                    "attr": {
+                        "name": "sexo",
+                        "type": "string"
+                    },
+                    "value": "",
+                    "operator": "en",
+                    "binding": "",
+                    "used": false,
+                    "connector": "&&",
+                    "memberOf": "masculino"
+                }
+            ],
+            "binding": "$bind1",
+            "connector": "AND"
+        },
+        {
+            "type": "NuevoBeneficio",
+            "conds": [
+                {
+                    "attr": {
+                        "name": "nro_documento",
+                        "type": "integer"
+                    },
+                    "value": "$bind1.documento.nro_documento",
+                    "operator": "==",
+                    "binding": "",
+                    "used": false,
+                    "connector": "&&"
+                }
+            ],
+            "binding": "$bind2",
+            "connector": "AND"
+        }
+    ],
+    "cep": false,
+    "types": [
+        "4afd5f28-40ea-11e5-ab76-c417fef93ab4",
+        "81492094-40ea-11e5-ab76-c417fef93ab4"
+    ],
+    "rule": null,
+    "bindings": "{\"bind1.sexo_valido\":{\"name\":\"bind1.sexo_valido\",\"type\":\"boolean\"},\"bind1.persona_valida\":{\"name\":\"bind1.persona_valida\",\"type\":\"boolean\"},\"bind1.tipo_documento\":{\"name\":\"bind1.tipo_documento\",\"type\":\"integer\"},\"bind1.documento\":{\"name\":\"bind1.documento\",\"type\":\"object\"},\"bind1.documento.copia_valida\":{\"name\":\"bind1.documento.copia_valida\",\"type\":\"boolean\"},\"bind1.documento.nro_documento\":{\"name\":\"bind1.documento.nro_documento\",\"type\":\"integer\"},\"bind1.documento.tipo_doc_valido\":{\"name\":\"bind1.documento.tipo_doc_valido\",\"type\":\"boolean\"},\"bind1.documento.caracter\":{\"name\":\"bind1.documento.caracter\",\"type\":\"string\"},\"bind1.documento.tipo_documento\":{\"name\":\"bind1.documento.tipo_documento\",\"type\":\"integer\"},\"bind1.sexo\":{\"name\":\"bind1.sexo\",\"type\":\"string\"},\"bind2.nro_beneficio\":{\"name\":\"bind2.nro_beneficio\",\"type\":\"string\"},\"bind2.nro_documento\":{\"name\":\"bind2.nro_documento\",\"type\":\"integer\"}}",
+    "bindingRules": {
+        "bind2": {
+            "type": "object",
+            "name": "bind2"
+        },
+        "bind1": {
+            "type": "object",
+            "name": "bind1"
+        }
+    },
+    "id": "89e5654e-476d-11e5-ab76-c417fef93ab4",
+    "active": true,
+    "published": false,
+    "limited": false,
+    "atomic": false,
+    "enabled": true
+}

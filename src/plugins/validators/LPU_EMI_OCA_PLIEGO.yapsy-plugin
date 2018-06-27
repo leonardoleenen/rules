@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_PLIEGO
+Module = LPU_EMI_OCA_PLIEGO
+[Documentation]
+
+Description = LPU_EMI_OCA_PLIEGO
+Author = dev_user
+Version = 0.1
+Organization = preprod-ardifusion13 - ArDifusion

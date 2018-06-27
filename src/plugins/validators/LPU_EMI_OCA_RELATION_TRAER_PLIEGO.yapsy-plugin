@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_RELATION_TRAER_PLIEGO
+Module = LPU_EMI_OCA_RELATION_TRAER_PLIEGO
+[Documentation]
+
+Description = Trae datos del Ultimo Pliego
+Author = dev_user
+Version = 0.1
+Organization = ardifusion - ArDifusion

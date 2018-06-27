@@ -1,0 +1,27 @@
+<md-dialog aria-label="List dialog" ng-cloak>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <div class="alert alert-danger" ng-show="!data.success">
+                <button type="button" class="close" aria-label="Close" ng-click="closeDialog()"><span aria-hidden="true">&times;</span></button>
+                <h4>Errores en la simulación</h4>
+                <h6>Mensaje</h6>
+                   <pre>{{data.message}}</pre>
+                <h6>Respuesta</h6>
+                   <pre>{{data.response}}</pre>
+            </div> 
+            <div class="alert alert-success" ng-show="data.success">
+                <button type="button" class="close" aria-label="Close" ng-click="closeDialog()"><span aria-hidden="true">&times;</span></button>
+                <h6>Mensaje</h6>
+                   <pre>{{data.message}}</pre>
+                <h6>Respuesta</h6>
+                   <pre>{{data.response}}</pre>
+            </div>
+        </div>
+    </md-dialog-content> 
+
+    <div class="md-actions">  
+        <md-button ng-click="closeDialog()" class="md-primary"> 
+            Cerrar 
+        </md-button> 
+    </div> 
+</md-dialog>

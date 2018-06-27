@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_OBS_PLIEGO
+Module = LPU_EMI_OCA_OBS_PLIEGO
+[Documentation]
+
+Description = LPU_EMI_OCA_OBS_PLIEGO
+Author = undefined
+Version = 0.1
+Organization = jgm - ArDifusion

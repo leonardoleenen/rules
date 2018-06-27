@@ -1,0 +1,9 @@
+[Core]
+Name = SP_OCA_RELATION_17351
+Module = SP_OCA_RELATION_17351
+[Documentation]
+
+Description = SP_OCA_RELATION_17351
+Author = dev_user
+Version = 0.1
+Organization = ardifusion - ArDifusion

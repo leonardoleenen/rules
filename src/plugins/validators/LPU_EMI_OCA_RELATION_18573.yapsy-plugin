@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_RELATION_18573
+Module = LPU_EMI_OCA_RELATION_18573
+[Documentation]
+
+Description = preseleccion a Acto preseleccion
+Author = asdf
+Version = 0.1
+Organization = jgm - ArDifusion

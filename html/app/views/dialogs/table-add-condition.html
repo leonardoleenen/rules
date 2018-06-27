@@ -1,0 +1,20 @@
+<md-dialog aria-label="List dialog" flex="30">
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <h4>Seleccione atributo a comparar</h4><br>
+            <label class="cute">Atributo</label>
+            <select class="form-control md-form-control" ng-change="changeConnectors()" ng-model="obj.attrToAdd" ng-options="attr as attr.name for attr in entity.entity.plainAttr"></select>
+            <br>
+            <label class="cute">Conector</label>
+            <select class="form-control md-form-control" ng-model="obj.connector" ng-options="connector as connector for connector in connectors"></select>
+        </div>
+    </md-dialog-content>
+    <div class="md-actions">  
+        <md-button ng-click="saveCond()" class="md-primary"> 
+            Aceptar 
+        </md-button> 
+        <md-button ng-click="closeDialog()" class="md-primary"> 
+            Cancelar 
+        </md-button> 
+    </div> 
+</md-dialog>

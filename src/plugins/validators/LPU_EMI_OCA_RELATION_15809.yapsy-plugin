@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_RELATION_15809
+Module = LPU_EMI_OCA_RELATION_15809
+[Documentation]
+
+Description = Acto Finalizacio - 2* Lamado
+Author = dev_user
+Version = 0.1
+Organization = ardifusion - ArDifusion

@@ -1,0 +1,62 @@
+<md-dialog aria-label="List dialog" ng-cloak flex="80">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Constante {{list.name}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">X</md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+
+        <div class="md-dialog-content">
+
+            <!-- start: PAGE CONTENT -->
+
+            <form name="userForm">
+                <div layout layout-sm="column">
+                    <div flex>
+                        <label class="cute">Descripcion: {{list.description}}</label>
+                    </div>
+
+                    <div flex="10">
+                        <h5 class="cute" style="color: #666; text-align: center; margin-top: 18px; margin-right:10px;" >
+                        <button class="btn btn-sm" tooltip="Cuando se encuentra activado permite una lista de constantes (lista de valores), si se encuentra desactivado únicamente permite agregar un solo valor en la constante" tooltip-placement="bottom"><i class="fa fa-question"></i></button>
+                        Lista:
+                        </h5>
+                    </div>
+
+                    <div flex="10" style="margin-top: 14px; padding-left: 20px">
+                        <label class="ui-switch ui-switch-lg m-t-xs m-r">
+                            <input disabled type="checkbox" ng-model="list.list" ng-change="changedListProperty()">
+                            <i></i>
+                        </label>
+                    </div>
+                </div>
+            </form>
+
+            <ng-form name="force">
+                <div layout layout="column">
+                    <legend class="top-spacing" style="font-weight: 400;" flex="100">Elementos:</legend>
+                </div>
+
+                <div layout layout="column" ng-repeat="element in list.elements track by $index" style="padding-left: 20px;">
+                    <div flex="30" class="list-name">
+                        <label class="cute">Elemento {{$index}}: </label>
+                    </div>
+
+                    <div flex="30">
+                        <input type="text" class="form-control" ng-model="element.value" ng-minlength="1" required>
+                    </div>
+
+                </div>
+            </ng-form>
+
+            <!-- end: PAGE CONTENT-->
+
+        </div>
+
+    </md-dialog-content>
+
+</md-dialog>

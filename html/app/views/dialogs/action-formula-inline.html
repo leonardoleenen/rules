@@ -1,0 +1,42 @@
+<md-dialog aria-label="List dialog" flex="50">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>Escribir Fórmula</h2>
+          <span flex></span>
+          <md-button class="md-icon-button" ng-click="closeDialog()">
+          </md-button>
+        </div>
+      </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <div layout layout-sm="column" style="margin-bottom: 10px">
+                <div flex="10">
+                    <h5 class="cute" style="color: #666; text-align: right; margin-right:10px;">Bindings:</h5> 
+                </div>
+                <div flex="30">
+                    <select class="form-control cust-select" ng-options="name for (name, value) in bindings" ng-model="outBind"></select>
+                </div>
+                <div flex="10">
+                    <button class="btn btn-primary" ng-click="insert()">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <div layout layout-sm="column">
+                <h5 class="cute" style="color: #666;">Formula:</h5> 
+            </div>
+            <div layout layout-sm="column">
+                <div flex="100" id="editor-min"></div>
+            </div>
+        </div>
+    </md-dialog-content> 
+
+    <div class="md-actions">  
+        <md-button ng-click="saveAction()" class="md-primary"> 
+            Guardar 
+        </md-button> 
+        <md-button ng-click="closeDialog()" class="md-primary"> 
+            Cerrar 
+        </md-button> 
+    </div> 
+</md-dialog>

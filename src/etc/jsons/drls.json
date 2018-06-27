@@ -1,0 +1,7 @@
+{
+    "id": "2500725e-40f1-11e5-ab76-c417fef93ab4",
+    "name": "Nombre-DRL",
+    "description": "",
+    "drl": "",
+    "type":"drl" //en la tabla se reciben algunos con type regla y tabla
+}

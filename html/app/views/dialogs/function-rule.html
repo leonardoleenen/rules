@@ -1,0 +1,60 @@
+ <md-dialog aria-label="List dialog" flex="40">
+    <md-dialog-content ng-hide="obj.type">
+        <div class="md-dialog-content">
+            <h4 class="cute">Seleccionar función/fórmula</h4>
+            <button class="btn btn-primary" style="margin-right:10px" ng-click="obj.type='formula'">Formula</button>
+            <button class="btn btn-primary" ng-click="obj.type='function'">Función</button>
+        </div>
+    </md-dialog-content>
+    <md-dialog-content ng-show="obj.type=='formula'">
+        <div class="md-dialog-content">
+
+            <h4 class="cute">Seleccionado: Formula</h4>
+            <label class="cute">Formula</label>
+            <select flex="50" ng-change="useFormula()" ng-options="item.name as item.name for item in formulas" ng-model="obj.formula.name" type="text" class="form-control cust-select"></select>
+            <md-whiteframe class="md-whiteframe-1dp" ng-show="obj.formula.formula">
+                <h5>Fórmula seleccionada: </h5>
+                <small class="cute">{{obj.formula.line}}</small>
+            </md-whiteframe>
+            <!-- <select flex="50" ng-options="key for (key,value) in bindings2" ng-model="obj.formula.fields[0]" type="text" class="form-control cust-select"></select> -->
+        </div>
+    </md-dialog-content>
+    <md-dialog-content ng-show="obj.type=='function'">
+        <div class="md-dialog-content">
+
+            <h4 class="cute">Seleccionado: Función</h4>
+            <label class="cute">Función</label>
+            <select flex="50" ng-change="redoFunctionParams()" ng-options="item.name as item.name for item in functions" ng-model="obj.funct.name" type="text" class="form-control cust-select"></select>
+            <label class="cute">Tipo de retorno: {{obj.funct.type}}</label>
+            <br>
+            <label class="cute">Parámetros de la función</label>
+
+            <div ng-repeat="field in obj.funct.fields track by $index">
+                <div class="col-md-12"><label class="cute">Atributo: {{field.at}}</label></div>
+
+                <md-checkbox class="col-md-3 md-primary" ng-model="obj.flags[$index]" aria-label="Binding?">
+                    Enlace
+                </md-checkbox>
+
+                <md-input-container ng-if="!obj.flags[$index]" class="col-md-8">
+                    <input type="text" ng-model="obj.funct.fields[$index].name">
+                </md-input-container>
+
+                <md-autocomplete ng-if="obj.flags[$index]" class="col-md-8" md-selected-item="obj.funct.fields[$index].name" md-search-text="searchText" md-items="item in bindings" md-item-text="item" ng-model="loco">
+                    <span md-highlight-text="searchText">{{item}}</span>
+                </md-autocomplete>
+                <hr>
+            </div>
+        </div>
+    </md-dialog-content>
+    <div class="md-actions">
+
+        <md-button ng-click="saveCond()" class="md-primary">
+            Aceptar
+        </md-button>
+        <md-button ng-click="closeDialog()" class="md-primary">
+            Cerrar
+        </md-button>
+
+    </div>
+ </md-dialog>

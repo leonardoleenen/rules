@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_RELATION_22028
+Module = LPU_EMI_OCA_RELATION_22028
+[Documentation]
+
+Description = Acto Preseleccion - Pliego
+Author = dev_user
+Version = 0.1
+Organization = preprod-ardifusion13 - ArDifusion

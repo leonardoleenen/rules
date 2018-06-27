@@ -1,0 +1,19 @@
+<md-dialog aria-label="List dialog" ng-cloak flex="80">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Visualización de Registro</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">&times;</md-button>
+        </div>
+    </md-toolbar>
+
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <div class="alert alert-success">
+                   <div ng-if="key!='data'" ng-repeat="(key,value) in data"> {{key}}: {{value}}</div>
+            </div>
+        </div>
+    </md-dialog-content>
+</md-dialog>

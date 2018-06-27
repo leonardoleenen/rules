@@ -1,0 +1,9 @@
+[Core]
+Name = publish_trigger
+Module = publish_trigger
+[Documentation]
+
+Description = 
+Author = dev_user
+Version = 0.1
+Organization = aduana - aduana

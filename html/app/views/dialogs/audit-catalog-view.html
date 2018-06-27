@@ -1,0 +1,41 @@
+<md-dialog aria-label="List dialog" ng-cloak  flex="80">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Catalogo {{catalog.name}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">X</md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+
+        <div class="md-dialog-content">
+
+            <!-- start: PAGE CONTENT -->
+
+            <form name="userForm">
+                <div layout layout-sm="column">
+                    <div flex>
+                        <label class="cute">Descripcion: {{catalog.description}}</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="light-grey">Reglas: {{rules}}</label>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="light-grey">Tablas: {{tables}}</label>
+                    </div>
+                </div>
+            </form>
+
+            <!-- end: PAGE CONTENT-->
+
+        </div>
+
+    </md-dialog-content>
+
+</md-dialog>

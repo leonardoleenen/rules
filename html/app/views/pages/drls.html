@@ -1,0 +1,21 @@
+<ul class="breadcrumb bg-white b-a">
+  <li><a ui-sref="app.dashboard"><i class="fa fa-home"></i> Inicio</a></li>
+  <li class="active">DRLs</li>
+</ul>
+
+<md-content class="md-padding">
+    <md-card-content>
+      <h2 class="md-title">Listado de DRLs</h2>
+  		<div class="table-responsive m-b-lg">
+	   	  <div ui-grid="gridOptionsSimple" ui-grid-pagination ui-grid-exporter ui-grid-auto-resize></div>
+      </div>
+    </md-card-content>
+</md-content>
+
+    <br/>
+<md-button class="md-fab md-fab-bottom-right pos-fix indigo md-primary" aria-label="Insert Drive" ui-sref="app.test">
+      <i class="mdi-content-add i-24"></i>
+      <md-tooltip md-direction="left">
+        Agregar DRL
+      </md-tooltip>
+</md-button>

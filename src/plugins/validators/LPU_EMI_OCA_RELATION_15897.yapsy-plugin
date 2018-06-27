@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_RELATION_15897
+Module = LPU_EMI_OCA_RELATION_15897
+[Documentation]
+
+Description = Circular de Suspension
+Author = skomlev
+Version = 0.1
+Organization = ardifusion - ArDifusion

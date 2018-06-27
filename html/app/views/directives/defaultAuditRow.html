@@ -1,0 +1,43 @@
+<div class="table-loop">
+	<div class="grey-100 tbody"> <!-- tyle="display: inline-block;"-->
+		<div class="t-special-spacing">
+			<span class="t-title">
+				Regla por defecto
+			</span>
+		</div>
+	</div>
+	<div class="grey-100 condition tbody" ng-repeat="entity in table.entities" ng-init="entityIndex = $index">
+		<div class="tsub-header" ng-repeat="cond in entity.conds" ng-init="condIndex = $index; celda = row.entities[entityIndex].conds[condIndex]">
+		</div>
+	</div>
+	<div class="grey-100 action tbody">
+		<div ng-repeat="action in table.default track by $index" style="clear:both;">
+			<button class="btn btn-default noBorderRadius maxwidth" style="float:left;">
+				<span ng-show="action.type=='modify'">
+					{{action.attr.name+"="+action.value | makeLittle}}
+					<md-tooltip >
+						{{action.attr.name+"="+action.value}}
+					</md-tooltip>
+				</span>
+				<span ng-show="action.type=='message'">
+					Mensaje: {{action.value | makeLittle}}
+					<md-tooltip >
+						Mensaje: {{action.value}}
+					</md-tooltip>
+				</span>
+				<span ng-show="action.type=='funct'">
+					Función: {{action.attr.name+"=" +action.funct.name+"(...)" | makeLittle}}
+					<md-tooltip >
+						Función: {{action.attr.name+"=" + action.funct.name+"(...)"}}
+					</md-tooltip>
+				</span>
+				<span ng-show="action.type=='formula'">
+					Formula: {{action.attr.name+"=" + action.formula.line | makeLittle}}
+					<md-tooltip >
+						Formula: {{action.attr.name+"=" + action.formula.line}}
+					</md-tooltip>
+				</span>
+			</button>
+		</div>
+	</div>
+</div>

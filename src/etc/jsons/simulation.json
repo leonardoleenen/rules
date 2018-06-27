@@ -1,0 +1,527 @@
+{
+    "version": "1.0",
+    "result": "{\"message\": \"DRL Ejecutado correctamente\", \"response\": [{\"fact_name\": \"NuevaPersona\", \"properties\": {\"sexo_valido\": false, \"persona_valida\": false, \"documento\": {\"copia_valida\": false, \"nro_documento\": 369852147, \"tipo_doc_valido\": true, \"tipo_documento\": 0, \"caracter\": null}, \"sexo\": \"m\", \"tipo_documento\": 0}}, {\"fact_name\": \"NuevoBeneficio\", \"properties\": {\"nro_beneficio\": \"1\", \"nro_documento\": 369852147}}, {\"fact_name\": \"NuevaPersona\", \"properties\": {\"sexo_valido\": false, \"persona_valida\": false, \"documento\": {\"copia_valida\": false, \"nro_documento\": 159963, \"tipo_doc_valido\": false, \"tipo_documento\": 0, \"caracter\": null}, \"sexo\": \"m\", \"tipo_documento\": 0}}, {\"fact_name\": \"NuevoBeneficio\", \"properties\": {\"nro_beneficio\": \"1\", \"nro_documento\": 369852147}}, {\"fact_name\": \"NuevaPersona\", \"properties\": {\"sexo_valido\": false, \"persona_valida\": false, \"documento\": {\"copia_valida\": false, \"nro_documento\": 0, \"tipo_doc_valido\": true, \"tipo_documento\": 0, \"caracter\": null}, \"sexo\": null, \"tipo_documento\": 0}}, {\"fact_name\": \"NuevoBeneficio\", \"properties\": {\"nro_beneficio\": \"1\", \"nro_documento\": 369852147}}], \"success\": true}",
+    "id": "4363bc3a-40ef-11e5-ab76-c417fef93ab4",
+    "name": "testing",
+    "disabled": true,
+    "catalogs": [
+        {
+            "id": "2500725e-40f1-11e5-ab76-c417fef93ab4",
+            "name": "Persona con BeneficioCat"
+        }
+    ],
+    "description": "",
+    "collection": [
+        {
+            "schema": {
+                "adding": false,
+                "tempType": "{\"value\":\"integer\",\"readable\":\"numero entero\"}",
+                "type": "object",
+                "properties": {
+                    "sexo_valido": {
+                        "readableType": "Verdadero/falso",
+                        "adding": false,
+                        "type": "boolean"
+                    },
+                    "persona_valida": {
+                        "readableType": "Verdadero/falso",
+                        "adding": false,
+                        "type": "boolean"
+                    },
+                    "documento": {
+                        "readableType": "Objeto",
+                        "adding": false,
+                        "tempType": "{\"value\":\"integer\",\"readable\":\"numero entero\"}",
+                        "type": "object",
+                        "properties": {
+                            "copia_valida": {
+                                "readableType": "Verdadero/falso",
+                                "adding": false,
+                                "type": "boolean"
+                            },
+                            "nro_documento": {
+                                "readableType": "numero entero",
+                                "adding": false,
+                                "type": "integer",
+                                "value": "369852147"
+                            },
+                            "tipo_doc_valido": {
+                                "readableType": "Verdadero/falso",
+                                "adding": false,
+                                "type": "boolean",
+                                "value": "true"
+                            },
+                            "caracter": {
+                                "readableType": "texto",
+                                "adding": false,
+                                "type": "string"
+                            },
+                            "tipo_documento": {
+                                "readableType": "numero entero",
+                                "adding": false,
+                                "type": "integer"
+                            }
+                        },
+                        "tempName": ""
+                    },
+                    "sexo": {
+                        "readableType": "texto",
+                        "adding": false,
+                        "type": "string",
+                        "value": "m"
+                    },
+                    "tipo_documento": {
+                        "readableType": "numero entero",
+                        "adding": false,
+                        "type": "integer"
+                    }
+                },
+                "tempName": ""
+            },
+            "plainAttr": [
+                {
+                    "type": "object",
+                    "name": "this"
+                },
+                {
+                    "type": "object",
+                    "name": "documento"
+                },
+                {
+                    "type": "string",
+                    "name": "documento.caracter"
+                },
+                {
+                    "type": "boolean",
+                    "name": "documento.copia_valida"
+                },
+                {
+                    "type": "integer",
+                    "name": "documento.nro_documento"
+                },
+                {
+                    "type": "boolean",
+                    "name": "documento.tipo_doc_valido"
+                },
+                {
+                    "type": "integer",
+                    "name": "documento.tipo_documento"
+                },
+                {
+                    "type": "boolean",
+                    "name": "persona_valida"
+                },
+                {
+                    "type": "string",
+                    "name": "sexo"
+                },
+                {
+                    "type": "boolean",
+                    "name": "sexo_valido"
+                },
+                {
+                    "type": "integer",
+                    "name": "tipo_documento"
+                }
+            ],
+            "id": "4afd5f28-40ea-11e5-ab76-c417fef93ab4",
+            "name": "NuevaPersona",
+            "description": ""
+        },
+        {
+            "schema": {
+                "adding": false,
+                "tempType": "{\"value\":\"integer\",\"readable\":\"numero entero\"}",
+                "type": "object",
+                "properties": {
+                    "nro_beneficio": {
+                        "readableType": "texto",
+                        "adding": false,
+                        "type": "string"
+                    },
+                    "nro_documento": {
+                        "readableType": "numero entero",
+                        "adding": false,
+                        "type": "integer",
+                        "value": "369852147"
+                    }
+                },
+                "tempName": ""
+            },
+            "plainAttr": [
+                {
+                    "type": "object",
+                    "name": "this"
+                },
+                {
+                    "type": "string",
+                    "name": "nro_beneficio"
+                },
+                {
+                    "type": "integer",
+                    "name": "nro_documento"
+                }
+            ],
+            "id": "81492094-40ea-11e5-ab76-c417fef93ab4",
+            "name": "NuevoBeneficio",
+            "description": ""
+        },
+        {
+            "schema": {
+                "adding": false,
+                "tempType": "{\"value\":\"integer\",\"readable\":\"numero entero\"}",
+                "type": "object",
+                "properties": {
+                    "sexo_valido": {
+                        "readableType": "Verdadero/falso",
+                        "adding": false,
+                        "type": "boolean"
+                    },
+                    "persona_valida": {
+                        "readableType": "Verdadero/falso",
+                        "adding": false,
+                        "type": "boolean"
+                    },
+                    "documento": {
+                        "readableType": "Objeto",
+                        "adding": false,
+                        "tempType": "{\"value\":\"integer\",\"readable\":\"numero entero\"}",
+                        "type": "object",
+                        "properties": {
+                            "copia_valida": {
+                                "readableType": "Verdadero/falso",
+                                "adding": false,
+                                "type": "boolean"
+                            },
+                            "nro_documento": {
+                                "readableType": "numero entero",
+                                "adding": false,
+                                "type": "integer",
+                                "value": "159963"
+                            },
+                            "tipo_doc_valido": {
+                                "readableType": "Verdadero/falso",
+                                "adding": false,
+                                "type": "boolean"
+                            },
+                            "caracter": {
+                                "readableType": "texto",
+                                "adding": false,
+                                "type": "string"
+                            },
+                            "tipo_documento": {
+                                "readableType": "numero entero",
+                                "adding": false,
+                                "type": "integer"
+                            }
+                        },
+                        "tempName": ""
+                    },
+                    "sexo": {
+                        "readableType": "texto",
+                        "adding": false,
+                        "type": "string",
+                        "value": "m"
+                    },
+                    "tipo_documento": {
+                        "readableType": "numero entero",
+                        "adding": false,
+                        "type": "integer"
+                    }
+                },
+                "tempName": ""
+            },
+            "plainAttr": [
+                {
+                    "type": "object",
+                    "name": "this"
+                },
+                {
+                    "type": "object",
+                    "name": "documento"
+                },
+                {
+                    "type": "string",
+                    "name": "documento.caracter"
+                },
+                {
+                    "type": "boolean",
+                    "name": "documento.copia_valida"
+                },
+                {
+                    "type": "integer",
+                    "name": "documento.nro_documento"
+                },
+                {
+                    "type": "boolean",
+                    "name": "documento.tipo_doc_valido"
+                },
+                {
+                    "type": "integer",
+                    "name": "documento.tipo_documento"
+                },
+                {
+                    "type": "boolean",
+                    "name": "persona_valida"
+                },
+                {
+                    "type": "string",
+                    "name": "sexo"
+                },
+                {
+                    "type": "boolean",
+                    "name": "sexo_valido"
+                },
+                {
+                    "type": "integer",
+                    "name": "tipo_documento"
+                }
+            ],
+            "id": "4afd5f28-40ea-11e5-ab76-c417fef93ab4",
+            "name": "NuevaPersona",
+            "description": ""
+        },
+        {
+            "schema": {
+                "adding": false,
+                "tempType": "{\"value\":\"integer\",\"readable\":\"numero entero\"}",
+                "type": "object",
+                "properties": {
+                    "nro_beneficio": {
+                        "readableType": "texto",
+                        "adding": false,
+                        "type": "string"
+                    },
+                    "nro_documento": {
+                        "readableType": "numero entero",
+                        "adding": false,
+                        "type": "integer",
+                        "value": "159963"
+                    }
+                },
+                "tempName": ""
+            },
+            "plainAttr": [
+                {
+                    "type": "object",
+                    "name": "this"
+                },
+                {
+                    "type": "string",
+                    "name": "nro_beneficio"
+                },
+                {
+                    "type": "integer",
+                    "name": "nro_documento"
+                }
+            ],
+            "id": "81492094-40ea-11e5-ab76-c417fef93ab4",
+            "name": "NuevoBeneficio",
+            "description": ""
+        },
+        {
+            "schema": {
+                "adding": false,
+                "tempType": "{\"value\":\"integer\",\"readable\":\"numero entero\"}",
+                "type": "object",
+                "properties": {
+                    "sexo_valido": {
+                        "readableType": "Verdadero/falso",
+                        "adding": false,
+                        "type": "boolean"
+                    },
+                    "persona_valida": {
+                        "readableType": "Verdadero/falso",
+                        "adding": false,
+                        "type": "boolean"
+                    },
+                    "documento": {
+                        "readableType": "Objeto",
+                        "adding": false,
+                        "tempType": "{\"value\":\"integer\",\"readable\":\"numero entero\"}",
+                        "type": "object",
+                        "properties": {
+                            "copia_valida": {
+                                "readableType": "Verdadero/falso",
+                                "adding": false,
+                                "type": "boolean"
+                            },
+                            "nro_documento": {
+                                "readableType": "numero entero",
+                                "adding": false,
+                                "type": "integer"
+                            },
+                            "tipo_doc_valido": {
+                                "readableType": "Verdadero/falso",
+                                "adding": false,
+                                "type": "boolean",
+                                "value": "true"
+                            },
+                            "caracter": {
+                                "readableType": "texto",
+                                "adding": false,
+                                "type": "string"
+                            },
+                            "tipo_documento": {
+                                "readableType": "numero entero",
+                                "adding": false,
+                                "type": "integer"
+                            }
+                        },
+                        "tempName": ""
+                    },
+                    "sexo": {
+                        "readableType": "texto",
+                        "adding": false,
+                        "type": "string"
+                    },
+                    "tipo_documento": {
+                        "readableType": "numero entero",
+                        "adding": false,
+                        "type": "integer"
+                    }
+                },
+                "tempName": ""
+            },
+            "plainAttr": [
+                {
+                    "type": "object",
+                    "name": "this"
+                },
+                {
+                    "type": "object",
+                    "name": "documento"
+                },
+                {
+                    "type": "string",
+                    "name": "documento.caracter"
+                },
+                {
+                    "type": "boolean",
+                    "name": "documento.copia_valida"
+                },
+                {
+                    "type": "integer",
+                    "name": "documento.nro_documento"
+                },
+                {
+                    "type": "boolean",
+                    "name": "documento.tipo_doc_valido"
+                },
+                {
+                    "type": "integer",
+                    "name": "documento.tipo_documento"
+                },
+                {
+                    "type": "boolean",
+                    "name": "persona_valida"
+                },
+                {
+                    "type": "string",
+                    "name": "sexo"
+                },
+                {
+                    "type": "boolean",
+                    "name": "sexo_valido"
+                },
+                {
+                    "type": "integer",
+                    "name": "tipo_documento"
+                }
+            ],
+            "id": "4afd5f28-40ea-11e5-ab76-c417fef93ab4",
+            "name": "NuevaPersona",
+            "description": ""
+        },
+        {
+            "schema": {
+                "adding": false,
+                "tempType": "{\"value\":\"integer\",\"readable\":\"numero entero\"}",
+                "type": "object",
+                "properties": {
+                    "nro_beneficio": {
+                        "readableType": "texto",
+                        "adding": false,
+                        "type": "string"
+                    },
+                    "nro_documento": {
+                        "readableType": "numero entero",
+                        "adding": false,
+                        "type": "integer"
+                    }
+                },
+                "tempName": ""
+            },
+            "plainAttr": [
+                {
+                    "type": "object",
+                    "name": "this"
+                },
+                {
+                    "type": "string",
+                    "name": "nro_beneficio"
+                },
+                {
+                    "type": "integer",
+                    "name": "nro_documento"
+                }
+            ],
+            "description": "",
+            "name": "NuevoBeneficio",
+            "id": "81492094-40ea-11e5-ab76-c417fef93ab4"
+        }
+    ],
+    "installed": false,
+    "instances": [
+        {
+            "entity": "NuevaPersona",
+            "instance": {
+                "documento": {
+                    "nro_documento": "369852147",
+                    "tipo_doc_valido": "true"
+                },
+                "sexo": "m"
+            }
+        },
+        {
+            "entity": "NuevoBeneficio",
+            "instance": {
+                "nro_documento": "369852147"
+            }
+        },
+        {
+            "entity": "NuevaPersona",
+            "instance": {
+                "documento": {
+                    "nro_documento": "159963"
+                },
+                "sexo": "m"
+            }
+        },
+        {
+            "entity": "NuevoBeneficio",
+            "instance": {
+                "nro_documento": "159963"
+            }
+        },
+        {
+            "entity": "NuevaPersona",
+            "instance": {
+                "documento": {
+                    "tipo_doc_valido": "true"
+                }
+            }
+        },
+        {
+            "entity": "NuevoBeneficio",
+            "instance": {}
+        }
+    ],
+    "installedON": {
+        "date": "2015-08-20 11:18:11",
+        "url": "/selectividad/rest/rule_engine/execute/testing/0",
+        "message": "DRL Instalado correctamente: com.leafnoise.pathfinder:testing:0",
+        "response": "com.leafnoise.pathfinder:testing:0",
+        "success": true
+    }
+}

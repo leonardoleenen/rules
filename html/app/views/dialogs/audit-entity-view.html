@@ -1,0 +1,77 @@
+<script type="text/ng-template" id="categoryTree">
+    <ng-form name="intern{{$index}}" ng-init="value.adding=false">
+      <span class="propper-form blue">
+        <span ng-if="key!='type'">{{ key }} ({{value.readableType}})</span>
+      </span>
+      <div class="btn-group propper-margin">
+        <div class="treeAddNew" ng-show="value.adding" ng-include="'treeAddNew'"></div>
+      </div>
+    </ng-form>
+
+    <ul ng-if="value.type=='object'">
+        <li ng-repeat="(key, value) in value.properties" ng-include="'categoryTree'" ng-if="key!='type'" ng-init="parent = $parent.$parent.value">
+        </li>
+    </ul>
+</script>
+
+<script type="text/ng-template" id="treeAddNew">
+  <ng-form name="custom">
+    <md-input-container flex style="float:left;">
+            <input ng-model="value.tempName" ng-pattern="/^[a-zA-Z0-9_\s]+$/">
+    </md-input-container>
+    <md-select flex placeholder="Tipo" ng-model="value.tempType" style="float:left; margin-top: 6px; min-width: 200px;">
+      <md-option ng-repeat="value in values" value="{{value}}">{{value.readable}}</md-option>
+    </md-select>
+    <button class="btn btn-primary btn-stroke btn-xs" style="float:left; margin-top: 8px;" placeholder="Nombre" ng-click="addSchema(value, value.tempName, value.tempType)">agregar</button>
+  </ng-form>
+</script>
+
+<md-dialog aria-label="List dialog" ng-cloak  flex="80">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Entidad {{entity.name}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">X</md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+
+        <div class="md-dialog-content">
+
+            <!-- start: PAGE CONTENT -->
+
+            <form name="userForm">
+                <div layout layout-sm="column">
+                    <div flex>
+                        <label class="cute">Descripcion: {{entity.description}}</label>
+                    </div>
+                </div>
+            </form>
+            <h4>Atributos</h4>
+
+            <div class="btn-group" ng-init="value.adding=false">
+                <div class="treeAddNew" ng-show="value.adding">
+                    <ng-form name="custom">
+                    <md-input-container flex style="float:left;">
+                        <input disabled name="name" ng-model="entity.schema.tempName">
+                    </md-input-container>
+                    <md-select flex placeholder="Tipo" ng-model="entity.schema.tempType" style="float:left; margin-top: 6px; min-width: 200px;">
+                        <md-option ng-repeat="value in values" value="{{value}}">{{value.readable}}</md-option>
+                    </md-select>
+                    </ng-form>
+                </div>
+            </div>
+
+            <ul id="mainList">
+                <li name="$index" ng-repeat="(key,value) in entity.schema.properties" ng-include="'categoryTree'" ng-if="key!='type'"></li>
+            </ul>
+
+            <!-- end: PAGE CONTENT-->
+
+        </div>
+
+    </md-dialog-content>
+
+</md-dialog>

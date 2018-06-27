@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_RELATION_16968
+Module = LPU_EMI_OCA_RELATION_16968
+[Documentation]
+
+Description = LPU_EMI_OCA_RELATION_16968
+Author = dev_user
+Version = 0.1
+Organization = preprod-ardifusion13 - ArDifusion

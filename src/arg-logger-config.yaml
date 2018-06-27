@@ -1,0 +1,34 @@
+---
+formatters:
+  extend:
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  simple:
+    format: "%(levelname)s  - %(asctime)s - %(message)s"
+handlers:
+  audit:
+    class: logging.handlers.RotatingFileHandler
+    filename: /tmp/arg2-audit.log
+    formatter: extend
+    level: DEBUG
+  console:
+    class: logging.StreamHandler
+    formatter: simple
+    level: DEBUG
+    stream: "ext://sys.stdout"
+  error:
+    class: logging.handlers.RotatingFileHandler
+    filename: /tmp/arg2-error.log
+    formatter: simple
+    level: DEBUG
+loggers:
+  arg_audit:
+    handlers:
+      - audit
+    level: INFO
+    propagate: false
+  arg_log:
+    handlers:
+      - error
+    level: INFO
+    propagate: false
+version: 1

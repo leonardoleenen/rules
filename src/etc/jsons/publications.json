@@ -1,0 +1,26 @@
+{
+    "id":"45as-2255478-bgas55",
+    "name":"persona_valida",
+    "service":{
+        "url": "string",
+        "rest":{
+            "servicio": "/selectividad/rest/rule_engine/execute/persona_valida/1.1.0",
+            "method": "POST"
+            },
+        "soap":{
+            "wsdl": "/soap/retrieve?wsdl",
+            "method": "persona_valida_1_1_0"
+        },
+        "data": {
+            "facts":[{}]
+        },
+        "secret_key": "string"
+        },
+    "version":1,
+    "drl":"string",
+    "date":"string",
+    "endingDate": "string",
+    "installed": true,
+    "snapshot": "nombre snapshot asociado",
+    "instruments": []
+}

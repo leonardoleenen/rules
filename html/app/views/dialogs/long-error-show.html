@@ -1,0 +1,23 @@
+<md-dialog aria-label="List dialog" flex="50">
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <div layout layout-sm="column">
+                <h5 class="cute" style="color: #666;">Hubo al menos un error en el contenido que quiere guardar, no es posible realizar la operacion de guardado, revise el siguiente error:</h5> 
+            </div>
+            <div layout layout-sm="column" style="margin-bottom: 10px">
+                <ul>
+                    <li ng-repeat="item in data.response">{{item | json}}</li>
+                </ul>
+            </div>
+            <div layout layout-sm="column">
+                <pre class="cute" style="color: #666;">NOTA: Esto puede deberse a una mala utilizacion de bindings tanto en restricciones como en condiciones, tenga bien a asegurarse que el uso de los mismos sea correcto.</pre> 
+            </div>
+        </div>
+    </md-dialog-content> 
+
+    <div class="md-actions">  
+        <md-button ng-click="cancel()" class="md-primary"> 
+            Cerrar 
+        </md-button> 
+    </div> 
+</md-dialog>

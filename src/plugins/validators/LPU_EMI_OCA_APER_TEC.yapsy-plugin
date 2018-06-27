@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_APER_TEC
+Module = LPU_EMI_OCA_APER_TEC
+[Documentation]
+
+Description = Apertura Tecnica
+Author = dev_user
+Version = 0.1
+Organization = ardifusion - ArDifusion

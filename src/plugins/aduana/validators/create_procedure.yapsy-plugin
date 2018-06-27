@@ -1,0 +1,9 @@
+[Core]
+Name = create_procedure
+Module = create_procedure
+[Documentation]
+
+Description = create_procedure
+Author = skomlev
+Version = 0.1
+Organization = arDifusion

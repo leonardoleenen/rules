@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>LuzIa Rulz - Login</title>
+  <link rel="stylesheet" href="login/app.css" type="text/css" />
+  <link rel="stylesheet" href="login/animate.css/animate.css" type="text/css" />
+  <link rel="stylesheet" href="login/angular-material/angular-material.css" type="text/css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="indigo bg-big" style="height:100%">
+  <div class="w-xxl w-auto-xs p-v-md" style="margin: 0px auto;">
+    <div style="text-align: center; font-size: 20px; color: whitesmoke; font-weight: bold;">Luzia Rulz</div>
+    <div class="p-lg panel md-whiteframe-z1 text-color m white" style="background-color: white;">
+      <div class="m-b text-sm">
+        Iniciar Sesion en Rulz con:
+      </div>
+        <a href="{{ url_for('security.oauth_authorize', provider='google') }}" md-ink-ripple type="submit" class="md-btn md-raised grey-100 btn-block p-h-md" style="width: 177px;"><span style="margin-right:30px"><i class="fa fa-google-plus"></i></span> Google</a><br><br>
+        <a href="{{ url_for('security.oauth_authorize', provider='facebook') }}" md-ink-ripple type="submit" class="md-btn md-raised grey-100 p-h-md" style="width: 177px;"><span style="margin-right:30px"><i class="fa fa-facebook"></i></span> Facebook</a><br><br>
+        <a href="{{ url_for('security.oauth_authorize', provider='twitter') }}" md-ink-ripple type="submit" class="md-btn md-raised grey-100 p-h-md" style="width: 177px;"><span style="margin-right:30px"><i class="fa fa-twitter"></i></span> Twitter</a><br><br>
+    </div>
+  </div>
+ </div>
+
+</body>
+</html>

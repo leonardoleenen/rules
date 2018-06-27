@@ -1,0 +1,68 @@
+<ul class="breadcrumb bg-white b-a" ng-hide="$parent.entitiesExternal">
+  <li><a ui-sref="app.dashboard"><i class="fa fa-home"></i> Inicio</a></li>
+  <li><a ui-sref="app.formulas">Formulas</a></li>
+  <li class="active">Editor de Formulas </li>
+</ul>
+<md-toolbar ng-hide="$parent.entitiesExternal">
+  <div class="md-toolbar-tools">
+    <h2>
+      <span>Formula</span>
+    </h2>
+    <span flex></span>
+    <button class="btn btn-default btn-addon" aria-label="Learn More" ng-click="showFAQs()">
+      <i class="fa fa-question"></i>
+      Ayuda
+      <md-tooltip>Ver preguntas frecuentes</md-tooltip>
+    </button>
+   </div>
+</md-toolbar>
+<md-content class="md-padding">
+  <form name="userForm">
+    <div layout layout-sm="column">
+      <md-input-container flex="30">
+        <label>Nombre</label>
+        <input ng-model="formula.name" name="name" ng-pattern="/^[a-z+A-Z+\s_0-9]+$/">
+        <div ng-messages="userForm.name.$error">
+          <div ng-message="pattern">Solo letras,numeros y guiones bajos son permitidos.</div>
+        </div>
+      </md-input-container>
+      <md-input-container flex>
+        <label>Descripcion</label>
+        <input ng-model="formula.description">
+      </md-input-container>
+    </div>
+  </form>
+  <h4>
+    Cuerpo de la formula.
+    <button class="btn btn-sm" tooltip="Acumuladores disponibles: SUMAR, MAXIMO, MINIMO ,PROMEDIO ,CONTAR | Operadores disponibles: + , - , / , * " tooltip-placement="right"><i class="fa fa-question"></i>
+    </button>
+
+  </h4>
+
+    <div layout layout-sm="column" style="margin-bottom:10px;">
+      <div flex="5"></div>
+      <md-chips flex ng-model="selectedItems" md-autocomplete-snap="" md-require-match="true" md-on-append="postVerification($chip)">
+        <md-autocomplete style="width:300px" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Cuerpo de formula" md-autoselect="true">
+          <span md-highlight-text="searchText">{{item.name}}</span>
+        </md-autocomplete>
+        <md-chip-template>
+          <span>
+            <small>{{$chip.name}}</small>
+          </span>
+        </md-chip-template>
+      </md-chips>
+      <div flex="10">
+       <button md-ink-ripple type="button" class="btn btn-default noBorderRadius btn-addon" style="margin-top: 15px;" ng-click="validate(true)">
+          <i class="fa fa-chevron-left"></i>
+          Validar
+        </button>
+      </div>
+    </div>
+  <button md-ink-ripple ng-hide="$parent.entitiesExternal" class="btn btn-fw btn-default" ng-click="goBack()" style="float:right; margin-left: 15px;">Volver</button>
+  <button md-ink-ripple type="button" class="btn btn-primary btn-fw btn-addon" ng-click="save()" style="float:right; margin-left:15px;"><i class="fa fa-save"></i>Guardar</button>
+  <button ng-hide="$parent.entitiesExternal" md-ink-ripple type="button" class="btn btn-primary btn-fw btn-addon" ng-click="save('goBack')" style="float:right; margin-left:15px;">
+    <i class="fa fa-save"></i>
+    Guardar y volver
+  </button>
+</md-content>
+

@@ -1,0 +1,9 @@
+[Core]
+Name = SP_OCA_RELATION_19427
+Module = SP_OCA_RELATION_19427
+[Documentation]
+
+Description = SP_OCA_RELATION_19427
+Author = dev_user
+Version = 0.1
+Organization = ardifusion - ArDifusion

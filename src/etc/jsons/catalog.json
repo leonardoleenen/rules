@@ -1,0 +1,21 @@
+{
+    "id": "2500725e-40f1-11e5-ab76-c417fef93ab4",
+    "name": "Persona con BeneficioCat",
+    "tables": [
+        {
+            "id": "d3ecfa44-40ec-11e5-ab76-c417fef93ab4",
+            "name": "Persona con Beneficio"
+        }
+    ],
+    "description": "Dominio creado por solicitud de regla atomica Persona con Beneficio",
+    "rules": [
+        {
+            "name": "ReglaDeTest",
+            "id": "ccb82d38-4129-11e5-ab76-c417fef93ab4"
+        },
+        {
+            "name": "nuevoteste",
+            "id": "89e5654e-476d-11e5-ab76-c417fef93ab4"
+        }
+    ]
+}

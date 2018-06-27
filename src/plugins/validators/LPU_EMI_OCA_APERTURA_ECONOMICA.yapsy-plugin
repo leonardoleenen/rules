@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_APERTURA_ECONOMICA
+Module = LPU_EMI_OCA_APERTURA_ECONOMICA
+[Documentation]
+
+Description = LPU_EMI_OCA_APERTURA_ECONOMICA
+Author = skomlev
+Version = 0.1
+Organization = arDifusion

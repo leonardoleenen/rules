@@ -1,0 +1,77 @@
+<md-dialog aria-label="List dialog" ng-cloak flex="80">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Funcion {{funct.name}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">X</md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+
+        <div class="md-dialog-content">
+
+            <!-- start: PAGE CONTENT -->
+
+            <form name="userForm">
+            <!-- helpers -->
+
+                <div layout layout-sm="column">
+                    <div class="funct-top" style="margin-left: 120px; margin-bottom: 9px;">
+                        <div style="text-align: center"><small class="cute">Tipo de retorno</small></div>
+                    </div>
+
+                    <div class="funct-top" style="margin-left: 120px; margin-bottom: 9px;">
+                        <div style="text-align: center"><small class="cute">Nombre de la función</small></div>
+                    </div>
+
+                    <div class="funct-top" style="margin-left: 120px; margin-bottom: 9px;">
+                        <div style="text-align: center"><small class="cute">Atributos de la función</small></div>
+                    </div>
+                </div>
+
+                <div layout layout-sm="column">
+
+                    <div class="funct-top" ><h4>Function</h4></div>
+
+                    <div class="funct-top" >
+                        <select class="form-control" ng-readonly="funct.id!=null" ng-disabled="funct.id!=null" ng-options="item.type as item.readableType for item in types" ng-model="funct.returnType" style="width: 200px;"></select>
+                    </div>
+
+                    <div class="funct-top" >
+                        <input placeholder="nombre función" type="text" name="name" ng-readonly="funct.id!=null" class="form-control" ng-model="funct.name" style="width: 200px;">
+                    </div>
+
+                    <div class="funct-top">
+                        <h5>(</h5>
+                    </div>
+
+                    <div class="funct-top" ng-repeat="item in funct.params">
+                        <h5 ng-if="$first">
+                        {{item.type}} {{item.name}}
+                        </h5>
+                        <h5 ng-if="!$first">,
+                        {{item.type}} {{item.name}}
+                        </h5>
+                    </div>
+
+
+                <div class="funct-top">
+                <h5>
+                )
+                </h5>
+                </div>
+                </div>
+            </form>
+            <h3>Cuerpo</h3>
+            <div id="editor">
+            </div>
+
+            <!-- end: PAGE CONTENT-->
+
+        </div>
+
+    </md-dialog-content>
+
+</md-dialog>

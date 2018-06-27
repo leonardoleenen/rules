@@ -1,0 +1,18 @@
+ <md-dialog aria-label="List dialog" flex="30">
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <h4>Nuevo objeto de datos</h4>
+            <label>Entidad</label>
+            <select placeholder="Seleccione entidad" ng-options="entity.name for entity in entities" ng-model="obj.entity" type="text" class="form-control cust-select"></select>
+        </div>
+    </md-dialog-content> 
+
+    <div class="md-actions">  
+        <md-button ng-click="saveAccion()" class="md-primary"> 
+            Agregar 
+        </md-button> 
+        <md-button ng-click="closeDialog()" class="md-primary"> 
+            Cerrar 
+        </md-button> 
+    </div> 
+ </md-dialog>

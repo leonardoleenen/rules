@@ -1,0 +1,82 @@
+<ul class="breadcrumb bg-white b-a" ng-hide="$parent.entitiesExternal">
+  <li><a ui-sref="app.dashboard"><i class="fa fa-home"></i>Inicio</a></li>
+  <li class="active">Editor DRL</li>
+</ul>
+
+<div layout="row">
+  <div flex="100">
+      <md-toolbar ng-hide="$parent.entitiesExternal">
+      <div class="md-toolbar-tools">
+        <h2>
+          <span>Editor de código DRL</span>
+        </h2>
+        <span flex></span>
+        <button class="btn btn-default btn-addon" aria-label="Learn More" ng-click="showFAQs()">
+          <i class="fa fa-question"></i>
+          Ayuda
+          <md-tooltip>Ver preguntas frecuentes</md-tooltip>
+        </button>
+       </div>
+    </md-toolbar>
+    <md-content class="md-padding">
+
+        <div class="col-md-12" ng-show="step>=1">
+        <legend>DRL</legend>
+          <div id="editor"></div>
+          <br>
+            <button md-ink-ripple type="button" ng-show="step>=1" class="btn btn-primary btn-fw" ng-click="validate()">Validar</button>
+            <div class="alert alert-danger" ng-show="error.error">
+              <button type="button" class="close" aria-label="Close" ng-click="error.error=false"><span aria-hidden="true">&times;</span></button>
+              <h4>Errores del drl</h4>
+              <ul>
+                <li ng-repeat="msg in error.message">
+                  {{msg}}
+                </li>
+              </ul>
+            </div>
+        </div>
+        <div class="col-md-12" ng-show="step>=2">
+          <legend>Facts (introducir arreglo/lista)</legend>
+          <div id="editor2"></div>
+          <br>
+          <button md-ink-ripple type="button" ng-show="step>=2" class=btn btn-primary btn-fw" ng-click="simulate()">Simular</button> <button md-ink-ripple type="button" ng-show="step>=1" class="md-btn btn-stroke md-raised m-b btn-fw blue" ng-click="validateJson()">ValidarJson</button>
+          <div class="alert alert-danger" ng-show="errorSim.error">
+            <button type="button" class="close" aria-label="Close" ng-click="errorSim.error=false"><span aria-hidden="true">&times;</span></button>
+            <h4>Errores de la simulación</h4>
+            <h6>Mensaje</h6>
+               <pre>{{errorSim.message}}</pre>
+            <h6>Respuesta</h6>
+               <pre>{{errorSim.response}}</pre>
+          </div>
+
+          <div class="alert alert-success" ng-show="successSim.success">
+            <h4>Resultado de la simulación</h4>
+            <h6>Mensaje</h6>
+               <pre>{{successSim.message}}</pre>
+            <h6>Respuesta</h6>
+               <pre>{{successSim.response | json}}</pre>
+          </div>
+        </div>
+
+        <div class="col-md-12" ng-show="step>=3">
+          <legend>DRL VALIDO</legend>
+          <form name="userForm">
+            <div layout layout-sm="column">
+              <md-input-container flex>
+                <label>Nombre</label>
+                <input ng-model="final.name">
+              </md-input-container>
+              <md-input-container flex="30" ng-if="!autoVersion">
+                <label>Numero de versión</label>
+                <input type="number" ng-model="final.version">
+              </md-input-container>
+            </div>
+          </form>
+        </div>
+      <br>
+      <button md-ink-ripple class="btn btn-default btn-fw" ng-click="refresh()" style="float:right; margin-left: 10px;" >Reiniciar</button>
+      <button md-ink-ripple type="button" ng-show="step>=3" class="btn btn-primary btn-fw" ng-click="saveThis()" style="float:right; margin-left: 10px;">Guardar</button>
+      <button md-ink-ripple type="button" ng-show="step>=3" class="btn btn-primary btn-fw" ng-click="install($event)" style="float:right;">Publicar</button>
+    </md-content>
+  </div>
+</div>

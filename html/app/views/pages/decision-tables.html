@@ -1,0 +1,23 @@
+<ul class="breadcrumb bg-white b-a">
+          <li><a href=""><i class="fa fa-home"></i> Inicio</a></li>
+          <li class="active">Tabla de desiciones</li>
+</ul>
+
+<md-content class="md-padding">
+    <md-card-content>
+      <h2 class="md-title">Listado de Tablas de desiciones</h2>
+  		<div class="table-responsive m-b-lg">
+	   	  <div ui-grid="gridOptionsSimple" ui-grid-pagination ui-grid-exporter ui-grid-auto-resize></div>
+		  </div>
+    </md-card-content>
+</md-content>
+
+    <br/>
+<md-button class="md-fab md-fab-bottom-right pos-fix indigo md-primary" aria-label="Insert Drive" ui-sref="app.decisionTable">
+      <i class="mdi-content-add i-24"></i>
+      <md-tooltip md-direction="left">
+        Agregar Tabla de decisiones
+      </md-tooltip>
+</md-button>
+
+

@@ -1,0 +1,84 @@
+<md-dialog aria-label="List dialog" ng-cloak >
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h4>App Key</h4>
+            <span flex></span>
+            
+        </div>
+    </md-toolbar>
+    <md-dialog-content style="overflow-x: hidden;">
+        <div class="md-dialog-content" style="min-width:500px"> 
+            <div layout layout-sm="column">
+              <md-input-container flex>
+                <label>Nombre</label>
+                <input ng-model="key.name" name="name" ng-minlength="3"  ng-pattern="/^[A-Za-z0-9_\s]+$/" required>
+                <div ng-messages="userForm.name.$error">
+                  <div ng-message="required">Este campo es requerido.</div>
+                  <div ng-message="minlength">Debe contener al menos 3 caracteres.</div>
+                  <div ng-message="pattern">Solo letras,numeros y guiones bajos son permitidos.</div>
+                </div>
+              </md-input-container>
+              <md-input-container flex>
+                <label>Descripcion</label>
+                <input ng-model="key.description">
+              </md-input-container>
+            </div>
+            <h4>Matriz de permisos y accesos</h4>
+            <b>Permisos generales</b>
+            <div layout="row">
+                <div flex class="t-title appkey-cheader">Colección</div>
+                <div flex class="t-title appkey-cheader">Escritura</div>
+                <div flex class="t-title appkey-cheader">Lectura</div>
+            </div>
+            <div ng-repeat="item in matrixTable">
+                <div layout="row" class="appkey-separator">
+                    <div flex class="appkey-sliderTitle">{{item.readableType}}</div>
+                    <div flex class="appkey-sliders sliderTitle">
+                          <input type="checkbox" checked  ng-model="key.matrix[item.writeName]">
+
+                    </div>
+                    <div flex class="appkey-sliders sliderTitle">
+                          <input type="checkbox" checked ng-model="key.matrix[item.readName]">
+                    </div>
+                </div>
+            </div>
+            <b>Permisos sobre Publicaciones</b>
+            <div>
+                 <div layout="row">
+                    <div flex class="t-title appkey-cheader">Accion</div>
+                    <div flex class="t-title appkey-cheader">Permitir/No permitir</div>
+                </div>
+                <div layout="row" class="appkey-separator">
+                    <div flex class="appkey-sliderTitle">Borrar</div>
+                    <div flex class="appkey-sliders sliderTitle">
+
+                          <input type="checkbox" checked  ng-model="key.matrix['WritePublication']">
+                    </div>
+                </div>
+                <div layout="row" class="appkey-separator">
+                    <div flex class="appkey-sliderTitle">Listar</div>
+                    <div flex class="appkey-sliders sliderTitle">
+
+                          <input type="checkbox" checked  ng-model="key.matrix['ReadPublication']">
+                    </div>
+                </div>
+                <div layout="row" class="appkey-separator">
+                    <div flex class="appkey-sliderTitle">Publicar/Despublicar</div>
+                    <div flex class="appkey-sliders sliderTitle">
+
+                          <input type="checkbox" checked  ng-model="key.matrix['RuleInstall']">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-dialog-content> 
+
+    <div class="md-actions">  
+        <md-button ng-click="save()" class="md-primary"> 
+            Guardar 
+        </md-button> 
+        <md-button ng-click="closeDialog()" class="md-primary"> 
+            Cerrar 
+        </md-button> 
+    </div> 
+</md-dialog>

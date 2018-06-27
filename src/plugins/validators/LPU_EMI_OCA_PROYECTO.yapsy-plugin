@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_PROYECTO
+Module = LPU_EMI_OCA_PROYECTO
+
+[Documentation]
+Description = LPU_EMI_OCA_PROYECTO
+Author = undefined
+Version = 0.1
+Organization = jgm - ArDifusion

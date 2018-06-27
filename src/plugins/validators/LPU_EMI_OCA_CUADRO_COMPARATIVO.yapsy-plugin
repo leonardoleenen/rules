@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_CUADRO_COMPARATIVO
+Module = LPU_EMI_OCA_CUADRO_COMPARATIVO
+[Documentation]
+
+Description = CUADRO_COMPARATIVO
+Author = dev_user
+Version = 0.1
+Organization = ardifusion - ArDifusion

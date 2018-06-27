@@ -1,0 +1,25 @@
+<md-bottom-sheet class="md-grid" layout="column" ng-cloak>
+  <div layout="row" layout-align="center center">
+    <h4>Agregar desde</h4>
+  </div>
+  <md-list flex layout="row" layout-align="center center">
+    <md-list-item>
+      <md-button class="md-grid-item-content" ng-click="addObj()">
+        <md-icon md-font-icon="mdi-action-assignment-ind" ng-style="{'font-size': '45px', 'height': '45px', 'line-height': '45px'}"></md-icon>
+        <div class="md-grid-text">Literal</div>
+      </md-button>
+    </md-list-item>
+    <md-list-item>
+      <md-button class="md-grid-item-content" ng-click="showImport($event)">
+        <md-icon md-font-icon="mdi-editor-attach-file" ng-style="{'font-size': '45px', 'height': '45px', 'line-height': '45px'}"></md-icon>
+        <div class="md-grid-text">Archivo</div>
+      </md-button>
+    </md-list-item>
+    <md-list-item>
+      <md-button class="md-grid-item-content" ng-click="addHttp()">
+        <md-icon md-font-icon="mdi-content-link" ng-style="{'font-size': '45px', 'height': '45px', 'line-height': '45px'}"></md-icon>
+        <div class="md-grid-text">Servicio</div>
+      </md-button>
+    </md-list-item>
+  </md-list>
+</md-bottom-sheet>

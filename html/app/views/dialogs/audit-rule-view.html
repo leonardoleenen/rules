@@ -1,0 +1,268 @@
+<md-dialog aria-label="List dialog" ng-cloak  flex="80">
+
+  <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Regla {{name}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          X
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+
+        <div class="md-dialog-content">
+
+                <!-- start: PAGE CONTENT -->
+                    <ng-form name="main" class="col-md-12">
+                      <form name="userForm">
+                        <div layout layout-sm="column">
+
+                          <div flex="25">
+                            <label class="cute">Descripcion: {{description}}</label>
+                          </div>
+
+                          <div flex="25">
+                            <label class="cute">Dominio: {{catalog.name}}</label>
+                          </div>
+
+                          <div flex="25">
+                            <label class="cute">Instrumentos Normativos: {{Instruments}}</label>
+                          </div>
+
+                        </div>
+
+                        <div layout layout-sm="column">
+
+                          <div flex="15">
+                              <h5 class="cute" style="color: #666; text-align: right; margin-top: 18px; margin-right:10px;" >
+                              <button class="btn btn-sm" tooltip="Creará un catálogo exclusivo para esta regla" tooltip-placement="right"><i class="fa fa-question"></i></button>
+                                Regla atómica:
+                              </h5>
+                          </div>
+
+                          <div flex="10" style="margin-top: 14px; padding-left: 20px">
+                            <label class="ui-switch ui-switch-lg m-t-xs m-r">
+                              <input disabled type="checkbox" ng-model="atomic">
+                              <i></i>
+                            </label>
+                          </div>
+
+                          <div flex="15">
+                              <h5 class="cute" style="color: #666; text-align: right; margin-top: 18px; margin-right:10px;" >
+                              <button class="btn btn-sm" tooltip="Cortará la evaluacion si esta regla se evalua correctamente en alguna ocasión." tooltip-placement="right"><i class="fa fa-question"></i></button>
+                                Corte de regla:
+                              </h5>
+                          </div>
+
+                          <div flex="10" style="margin-top: 17px; padding-left: 20px">
+                            <label class="ui-switch ui-switch-lg m-t-xs m-r">
+                              <input disabled type="checkbox" ng-model="halt">
+                              <i></i>
+                            </label>
+                          </div>
+
+                          <div flex="15">
+                           <h5 class="cute" style="color: #666; text-align: right; margin-top: 18px; margin-right:10px;" >
+                              <button class="btn btn-sm" tooltip="Creará una contra condicion automaticamente, la cual puede prevenir que la regla entre en un bucle de evaluación." tooltip-placement="right"><i class="fa fa-question"></i></button>
+                                Contra Condicion:
+                              </h5>
+                          </div>
+
+                          <div flex="10" style="margin-top: 14px; padding-left: 20px">
+                            <label class="ui-switch ui-switch-lg m-t-xs m-r">
+                              <input disabled type="checkbox" ng-model="contraCondicion">
+                              <i></i>
+                            </label>
+                          </div>
+
+                          <div flex="15">
+                           <h5 class="cute" style="color: #666; text-align: right; margin-top: 18px; margin-right:10px;" >
+                              <button class="btn btn-sm" tooltip="La regla se evaluará una sola vez por cada uno de los objetos disponibles." tooltip-placement="right"><i class="fa fa-question"></i></button>
+                                Alcance limitado:
+                              </h5>
+                          </div>
+                          <div flex="10" style="margin-top: 14px; padding-left: 20px">
+                            <label class="ui-switch ui-switch-lg m-t-xs m-r">
+                              <input disabled type="checkbox" ng-model="limited">
+                              <i></i>
+                            </label>
+                          </div>
+
+                        </div>
+
+                    </form>
+                        <legend>Condiciones</legend>
+                        <div class="row">
+                            <div class="col-md-4 no-padding">
+                                <div style="text-align: center" style="font-size: 50%"><small class="cute">Condicion</small></div>
+                            </div>
+                            <div class="col-md-8 no-padding">
+                                <div class="col-md-7 no-padding">
+                                    <div class="col-md-6 no-padding">
+                                        <div style="text-align: center"><small class="cute">Atributo</small></div>
+                                    </div>
+                                    <div class="col-md-6 no-padding">
+                                        <div style="text-align: center"><small class="cute">Valor</small></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 no-padding">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 repeated no-padding" ng-hide="advanced" >
+                            <div ng-repeat="rule in rules" class="row main-row special">
+
+                                <div class="cold-md-12 parentheses" ng-if="rule.parentesis">
+                                    <div class="btn-group">
+                                        <button class="btn btn-default btn-xs" ng-click="parenthesesUp($index)" tooltip-placement="bottom" tooltip="Subir paréntesis" ng-hide="$first">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </button>
+                                        <button class="btn btn-default btn-xs" ng-click="parenthesesDown($index)" tooltip-placement="bottom" tooltip="Bajar paréntesis" ng-hide="$last">
+                                            <i class="fa fa-chevron-down"></i>
+                                        </button>
+                                        <button class="btn btn-default btn-xs" ng-click="removeRule($index)" tooltip-placement="bottom" tooltip="Eliminar paréntesis">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </div>
+                                    PARÉNTESIS
+                                </div>
+
+                                <div class="col-md-4 no-padding" ng-if="!rule.parentesis">
+                                    <div class="col-md-5 no-padding" style="text-align: right;">
+                                        <div class="btn-group">
+                                            <button disabled class="btn btn-stroke indigo" ng-click="rule.connector='||'" ng-show="rule.connector=='AND'&&!$first&&  !rules[$index-1].parentesis" tooltip="conector"> Y </button>
+                                            <button disabled class="btn btn-stroke blue" ng-click="rule.connector='AND'" ng-show="rule.connector=='||' && !$first && !rules[$index-1].parentesis" tooltip="conector">O</button>
+
+                                            <button disabled md-ink-ripple ng-click="bindThis(rule, true)" ng-show="rule.binding" class="btn btn-stroke btn-primary noBorderRadius" tooltip="{{rule.binding}}" ng-class="{'btn-success': rule.binding}" style="  min-width: 38px;">
+                                                <i class="glyphicon glyphicon-link"></i> {{rule.binding.length>5?rule.binding.substr(0,5)+'...':rule.binding}}
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-7 no-padding">
+                                        <input disabled type="text" name="nombre" class="eye-catcher form-control" ng-model="rule.type">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 no-padding btn-group" ng-if="rule.conds.length==0&&!rule.parentesis">
+                                    <button md-ink-ripple ng-click="removeRule($index)" class="btn btn-stroke btn-danger btn-stroke noBorderRadius" tooltip="eliminar condición" ><i class="glyphicon glyphicon-minus"></i></button>
+                                    <button md-ink-ripple ng-click="addCondNoVerif(rule, $index)" class="btn btn-stroke btn-primary noBorderRadius" tooltip="Agregar restricción"><i class="glyphicon glyphicon-plus"></i></button>
+                                    <button md-ink-ripple ng-click="setTime(rule, 'windowTime')" ng-show="rule.windowTime" class="btn btn-stroke btn-success noBorderRadius" ng-if="$index==0" >{{rule.windowTime}}</button>
+                                </div>
+
+                                <div class="col-md-8 no-padding" ng-if="!rule.parentesis">
+                                    <div ng-repeat="cond in rule.conds">
+                                        <!-- DIV SIN CEP -->
+                                        <div class="col-md-7 no-padding" ng-if="!cond.cep||cond.used" style="min-height: 41px;">
+                                            <div layout="row">
+                                                <button disabled class="btn btn-stroke w-connector indigo noBorderRadius" ng-click="cond.connector='||'" ng-show="cond.connector=='&&'&&!$first" tooltip="conector">Y</button>
+                                                <button disabled class="btn btn-stroke w-connector blue noBorderRadius" ng-click="cond.connector='&&'" ng-show="cond.connector=='||'&&!$first"tooltip="conector">O</button>
+
+                                                <!-- ATRIBUTOS -->
+                                                <div flex>
+                                                    <input disabled type="text" name="2" class="eye-catcher form-control"  ng-model="cond.attr.name">
+                                                </div>
+
+                                                <!-- OPERADOR -->
+                                                <div flex="20">
+                                                    <!-- Otros -->
+                                                    <input disabled type="text" name="2" class="eye-catcher form-control"  ng-model="cond.operator">
+                                                </div>
+
+                                                <!-- MODO NORMAL - INPUT-->
+                                                <div flex="50" ng-hide="(cond.operator=='en'||cond.operator=='no en'||cond.operator=='entre'||cond.funct||cond.formula||cond.attr.type == 'date')">
+                                                    <input disabled type="text" ng-hide="cond.attr.type == 'date'" name="3" ng-model="cond.value" ng-change="check" typeahead="item for item in typeAheadList | filter:$viewValue | limitTo:8" class="form-control">
+                                                </div>
+                                                <!-- SOLO FECHAS -->
+                                                <div flex="50" ng-hide="(cond.operator=='en'||cond.operator=='no en'||cond.operator=='entre'||cond.funct||cond.formula||cond.attr.type != 'date')">
+                                                    <button disabled class="btn btn-primary noBorderRadius btn-addon"  style="overflow: hidden; width: 100%;" ng-click="handleDate(cond, $event)"><i class="fa fa-pencil"></i>{{cond.value?cond.value:"Editar" | date:"dd/MM/yyyy" | makeLittle}}
+                                                        <md-tooltip ng-if="cond.value!='' ">
+                                                          {{cond.value | date:"dd/MM/yyyy"}}
+                                                        </md-tooltip>
+                                                    </button>
+                                                </div>
+
+                                                <div flex="50" ng-show="(cond.funct&&cond.operator!='entre'&&cond.operator!='en'&&cond.operator!='no en')">
+                                                    <!-- SOLO CUANDO ES FUNCION -->
+                                                    <button disabled class="btn btn-primary noBorderRadius btn-stroke disabled"  style="overflow: hidden; width: 100%;" ng-click="addFunction($event, cond)">Función: {{cond.funct.type}}({{cond.funct.fields[0].name.substr(0,5)}}...)</button>
+                                                </div>
+                                                <div flex="50" ng-show="(cond.formula&&cond.operator!='entre'&&cond.operator!='en'&&cond.operator!='no en')" >
+                                                    <!-- SOLO CUANDO ES FORMULA -->
+                                                    <button disabled class="btn btn-primary noBorderRadius btn-stroke disabled" style="overflow: hidden; width: 100%;">Formula: {{cond.formula.name.substr(0,6)}}...</button>
+                                                </div>
+                                                <div ng-show="cond.operator=='entre'" flex="50">
+                                                    <!-- SOLO CUANDO ES ENTRE/BETWEEN -->
+                                                    <input disabled ng-model="cond.value" typeahead="item for item in typeAheadList | filter:$viewValue | limitTo:8"  type="text" name="3" class="form-control typeahead custom-40">
+                                                    <input type="text" name="3" class="form-control typeahead custom-20" disabled value="Y">
+                                                    <input type="text" name="3" class="form-control typeahead custom-40" ng-model="cond.value2" typeahead="item for item in typeAheadList | filter:$viewValue | limitTo:8">
+                                                </div>
+                                                <div flex="50" ng-show="cond.operator=='en'||cond.operator=='no en'" >
+                                                    <!-- fin SOLO CUANDO ES EN/NO-EN -->
+                                                    <input disabled type="text" class="form-control" ng-model="cond.memberOf">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clear"></div>
+                            <legend style="margin-top: 15px;">Acciones de esta regla</legend>
+                            <div class="row">
+                                <div class="col-md-2 no-padding">
+                                </div>
+                                <div class="col-md-4 no-padding">
+                                    <div style="text-align: center" style="font-size: 50%"><small class="cute">Acción</small></div>
+                                </div>
+                                <div class="col-md-4 no-padding">
+                                    <div style="text-align: center" style="font-size: 50%"><small class="cute">Valor</small></div>
+                                </div>
+                            </div>
+
+                            <div class="row" ng-repeat="action in actions" style="margin-top: 10px;">
+                                <div class="col-md-2">
+                                    <p ng-show="action.message" style="text-align: right; margin-top: 9px;">
+                                            <label class="cute">Mensaje:</label>
+                                    </p>
+                                    <p ng-hide="action.message" style="text-align: right; margin-top: 9px;">
+                                            <label class="cute">Modificar campo:</label>
+                                    </p>
+                                </div>
+
+                                <div class="col-md-4" ng-hide="action.message">
+                                    <input disabled type="text" class="form-control cust-select"ng-model="action.binding.name" >
+                                </div>
+
+                                <div class="col-md-4" ng-hide="action.message">
+                                    <input disabled ng-hide="action.code||action.funct||action.formula" type="text" class="form-control cust-select" ng-model="action.value" placeholder="ingrese valor" typeahead="item for item in typeAheadConstants | filter:$viewValue | limitTo:8">
+                                    <button disabled ng-show="action.code" class="btn btn-primary btn-stroke" style="width: 100%" ng-click="addFormula($event, action, false)">
+                                        Formula: {{action.value.substr(0,10)}}... <i class="fa fa-pencil"></i> Editar
+                                    </button>
+                                    <button disabled ng-show="action.funct" class="btn btn-primary btn-stroke" style="width: 100%" ng-click="addFunction($event, action)">
+                                        Funcion {{action.funct.name.substr(0,10)}}... <i class="fa fa-pencil"></i> Editar
+                                    </button>
+                                    <button disabled ng-show="action.formula" class="btn btn-primary btn-stroke" style="width: 100%" ng-click="addFunction($event, action)">
+                                        Formula {{action.formula.name.substr(0,10)}}... <i class="fa fa-pencil"></i> Editar
+                                    </button>
+                                </div>
+
+                                <div class="col-md-8" ng-show="action.message">
+                                    <input disabled ng-hide="action.code" type="text" class="form-control cust-select" ng-model="action.value" placeholder="Ingrese su mensaje..." typeahead="item for item in typeAheadConstants | filter:$viewValue | limitTo:8">
+                                </div>
+
+                            </div>
+                            <hr>
+
+                        </div>
+                    </ng-form>
+
+                    <!-- end: PAGE CONTENT-->
+            </div>
+
+
+    </md-dialog-content>
+
+</md-dialog>

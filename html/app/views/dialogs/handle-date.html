@@ -1,0 +1,30 @@
+<md-dialog aria-label="List dialog" flex="20">
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <h4>Comparar fecha con:</h4>
+
+            <div ng-hide="opt">
+                <button ng-click="opt = 'calendar'" class="btn btn-primary">Fecha especifica</button>
+                <button ng-click="opt = 'literal'" class="btn btn-primary">Atributo</button>
+            </div>
+
+
+            <div ng-show="opt =='calendar'">
+                <md-datepicker ng-model="cond.value" md-placeholder="Ingresar Fecha" flex></md-datepicker>
+            </div>
+
+            <div ng-show="opt =='literal'">
+                <input type="text" name="3" ng-model="cond.value" ng-change="check" typeahead="item for item in typeAheadList | filter:$viewValue | limitTo:8" class="form-control">
+            </div>
+        </div>
+    </md-dialog-content> 
+
+    <div class="md-actions">  
+        <md-button ng-click="retry()" class="md-primary" ng-show="opt"> 
+            <i class="fa fa-refresh fa-spin"></i> Reiniciar
+        </md-button> 
+        <md-button ng-click="save()" class="md-primary"> 
+            aceptar 
+        </md-button> 
+    </div> 
+</md-dialog>

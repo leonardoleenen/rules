@@ -1,0 +1,41 @@
+<md-dialog aria-label="List dialog" ng-cloak flex="80">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Formula {{formula.name}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">X</md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+
+        <div class="md-dialog-content">
+
+            <!-- start: PAGE CONTENT -->
+            <form name="userForm">
+                <div layout layout-sm="column">
+                    <div flex>
+                        <label class="cute">Descripcion: {{formula.description}}</label>
+                    </div>
+                </div>
+            </form>
+
+            </br>
+
+            <div layout layout-sm="column" style="margin-bottom:10px;">
+                <div flex="5"></div>
+
+               <md-chips ng-repeat="element in selectedItems">
+                     <md-chip>{{element.name}}</md-chip>
+                </md-chips>
+
+            </div>
+
+            <!-- end: PAGE CONTENT-->
+
+        </div>
+
+    </md-dialog-content>
+
+</md-dialog>

@@ -1,0 +1,114 @@
+<script type="text/ng-template" id="categoryTree">
+    <ng-form name="intern{{$index}}" ng-init="value.adding=false">
+      <span class="propper-form blue">
+        <span ng-if="key!='type' && !value.editing">{{ key }} ({{value.readableType}})
+          <md-tooltip>
+             Ruta del atributo: {{parentKey}}
+          </md-tooltip>
+        </span>
+        <span ng-if="value.editing">
+            <input ng-model="value.tempKey" class="cust-form-control"></input>
+        </span>
+
+      </span>
+      <div class="btn-group propper-margin">
+        <button ng-show="value.editing" class="btn btn-default noBorderRadius" ng-click="acceptEdit(value, parentKey, key)"><i class="fa fa-check"></i></button>
+        <button ng-hide="value.adding || value.editing" class="btn btn-default noBorderRadius" ng-click="editThis(value, key)"><i class="fa fa-pencil"></i></button>
+        <button ng-hide="value.adding || value.type!='object' || value.editing" class="btn btn-default noBorderRadius" ng-click="value.adding=true;"><i class="fa fa-plus"></i></button>
+        <button ng-hide="value.adding || value.editing" class="btn btn-danger noBorderRadius" ng-click="removeThis(parent, key)"><i class="fa fa-trash"></i></button>
+        <div class="treeAddNew" ng-show="value.adding" ng-include="'treeAddNew'"></div>
+      </div>
+    </ng-form>
+
+    <ul ng-if="value.type=='object'">
+        <li ng-repeat="(key, value) in value.properties" ng-include="'categoryTree'" ng-if="key!='type'" ng-init="parent = $parent.$parent.value;parentKey=parentKey+'.'+key"> 
+        </li>
+    </ul>
+</script>
+<script type="text/ng-template" id="treeAddNew">
+  <ng-form name="custom">
+    <md-input-container flex style="float:left;">
+            <input ng-model="value.tempName" ng-pattern="/^[a-zA-Z0-9_\s]+$/" name="name">
+    </md-input-container>
+    <md-select flex placeholder="Tipo" ng-model="value.tempType" style="float:left; margin-top: 6px; min-width: 200px;">
+      <md-option ng-repeat="value in values" value="{{value}}">{{value.readable}}</md-option>
+    </md-select>
+    <button ng-class="{ disabled: custom.name.$invalid }" class="btn btn-primary btn-stroke btn-xs" style="float:left; margin-top: 8px;" placeholder="Nombre" ng-click="addSchema(value, value.tempName, value.tempType)">agregar</button>
+  </ng-form>
+</script>
+
+<ul class="breadcrumb bg-white b-a" ng-hide="$parent.entitiesExternal">
+  <li><a ui-sref="app.dashboard"><i class="fa fa-home"></i>Inicio</a></li>
+  <li><a ui-sref="app.entities">Entidades</a></li>
+  <li class="active">Editor de entidades </li>
+</ul>
+<md-toolbar ng-hide="$parent.entitiesExternal">
+  <div class="md-toolbar-tools">
+    <h2>
+      <span>Entidades</span>
+    </h2>
+    <span flex></span>
+    <button class="btn btn-default btn-addon" aria-label="Learn More" ng-click="showFAQs()">
+      <i class="fa fa-question"></i>
+      Ayuda
+      <md-tooltip>Ver preguntas frecuentes</md-tooltip>
+    </button>
+   </div>
+</md-toolbar>
+<md-content class="md-padding">
+  <form name="userForm">
+    <div layout layout-sm="column">
+      <md-input-container flex>
+        <label>Nombre</label>
+        <input ng-model="entity.name" name="name" ng-minlength="3"  ng-pattern="/^[A-Za-z0-9_\s]+$/" required>
+        <div ng-messages="userForm.name.$error">
+          <div ng-message="required">Este campo es requerido.</div>
+          <div ng-message="minlength">Debe contener al menos 3 caracteres.</div>
+          <div ng-message="pattern">Solo letras,numeros y guiones bajos son permitidos.</div>
+        </div>
+      </md-input-container>
+      <md-input-container flex>
+        <label>Descripcion</label>
+        <input ng-model="entity.description">
+      </md-input-container>
+    </div>
+  </form>
+  <h4>Atributos</h4>
+  <div class="btn-group" ng-init="value.adding=false">
+    <span ng-hide="value.adding" class="btn btn-primary btn-stroke noBorderRadius" ng-click="value.adding=true;" style="margin-bottom: 10px;"><i class="fa fa-plus"></i> Agregar nuevo</span>
+    <div class="treeAddNew" ng-show="value.adding">
+      <ng-form name="custom">
+        <md-input-container flex style="float:left;">
+                <input name="name" ng-model="entity.schema.tempName" ng-minlength="2" ng-pattern="/^[a-zA-Z0-9_\s]+$/">
+                <div ng-messages="custom.name.$error">
+                  <div ng-message="required">Este campo es requerido.</div>
+                  <div ng-message="minlength">Minimo 2 caracteres.</div>
+                  <div ng-message="pattern">Solo letras y numeros son permitidos</div>
+                </div>
+        </md-input-container>
+        <md-select flex placeholder="Tipo" ng-model="entity.schema.tempType" style="float:left; margin-top: 6px; min-width: 200px;">
+          <md-option ng-repeat="value in values" value="{{value}}">{{value.readable}}</md-option>
+        </md-select>
+        <button class="btn btn-primary btn-stroke btn-xs" style="float:left; margin-top: 8px;" placeholder="Nombre" ng-click="addSchema(entity.schema, entity.schema.tempName, entity.schema.tempType)" ng-class="{ disabled: custom.name.$invalid }">agregar</button>
+      </ng-form>
+    </div>
+  </div>
+  <ul id="mainList">
+      <li name="$index" ng-repeat="(key,value) in entity.schema.properties" ng-include="'categoryTree'" ng-if="key!='type'" ng-init="parentKey=key"></li>
+  </ul>
+  <button md-ink-ripple ng-hide="$parent.entitiesExternal" class="btn btn-default btn-fw " ng-click="goBack()" style="float:right; margin-left: 15px;">Volver</button>
+  <button md-ink-ripple ng-show="$parent.entitiesExternal" class="btn btn-default btn-fw " ng-click="externalCloseTab()" style="float:right; margin-left: 15px;" >Cerrar</button>        <!-- FOR USE EMBEDED -->
+  <button md-ink-ripple type="button" ng-if="entity.id" class="btn btn-primary btn-fw btn-addon" ng-click="whichRules()" style="float:right; margin-left: 15px;">
+    <i class="fa fa-code-fork"></i>
+    Ver Reglas
+  </button>
+  <button md-ink-ripple type="button" class="btn btn-primary btn-fw btn-addon" ng-click="save()" style="float:right; margin-left: 15px;">
+    <i class="fa fa-save"></i>
+    Guardar
+  </button>
+  <button ng-hide="$parent.entitiesExternal" md-ink-ripple type="button" class="btn btn-primary btn-fw btn-addon" ng-click="save('goBack')" style="float:right;">
+    <i class="fa fa-save"></i>
+    Guardar y volver
+  </button>
+</md-content>
+

@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_RELATION__17915
+Module = LPU_EMI_OCA_RELATION__17915
+[Documentation]
+
+Description = Modificatorai Fechas - Vigente
+Author = dev_user
+Version = 0.1
+Organization = ardifusion - ArDifusion

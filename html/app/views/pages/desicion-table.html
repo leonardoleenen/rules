@@ -1,0 +1,335 @@
+<div layout="row">
+	<div flex="100">
+		<ul class="breadcrumb bg-white b-a" ng-hide="$parent.entitiesExternal">
+			<li><a ui-sref="app.dashboard"><i class="fa fa-home"></i> Inicio</a></li>
+			<li><a ui-sref="app.decisionTables">Tablas de decisiones</a></li>
+			<li class="active">Editor de Tablas</li>
+		</ul>
+	</div>
+</div>
+<!-- <div layout="row">
+	<div flex="100">
+		<md-content style="margin-bottom: 25px">
+			<md-toolbar>
+				<div class="md-toolbar-tools">
+					<h2>
+						<span>ENTIDADES</span>
+					</h2>
+					<span flex></span>
+					<select class="custom-select" ng-options="eventType.name for eventType in entities" ng-model="entityEXT"><option>--Seleccione--</option></select>
+						<button ng-click="editEntity()" class="btn btn-default" aria-label="Favorite" style="font-size: 14px;">
+							<i class="mdi-action-note-add ng-scope"></i>
+							Editar entidad
+						</button>
+					<button ng-click="addNewEntity()" class="btn btn-default" aria-label="Favorite" style="font-size: 14px;">
+						<i class="mdi-action-note-add ng-scope"></i>
+						Agregar Nueva entidad
+					</button>
+				</div>
+			</md-toolbar>
+			<div ng-show="displayEntity" ng-include="'views/pages/entity.html'" ng-controller="EntityController" style="margin-bottom: 20px"></div>
+		</md-content>
+	</div>
+</div> -->
+
+<div layout="row">
+	<div flex="100">
+		<md-toolbar ng-hide="$parent.entitiesExternal">
+			<div class="md-toolbar-tools">
+				<h2>
+					<span>Tabla de decisiones</span>
+				</h2>
+				<span flex></span>
+				    <button class="btn btn-default btn-addon" aria-label="Learn More" ng-click="showFAQs()">
+				      <i class="fa fa-question"></i>
+				      Ayuda
+				      <md-tooltip>Ver preguntas frecuentes</md-tooltip>
+				    </button>
+			 </div>
+		</md-toolbar>
+		<md-content class="md-padding">
+
+			<form name="userForm">
+				<div layout layout-sm="column">
+					<md-input-container flex="40">
+						<label>Nombre</label>
+						<input ng-model="table.name">
+					</md-input-container>
+					<md-input-container flex="60">
+						<label>Descripcion</label>
+						<input ng-model="table.description">
+					</md-input-container>
+				</div>
+				<div layout layout-sm="column">
+					<div flex="15">
+						<h5 class="cute" style="color: #666; text-align: right; margin-top: 18px; margin-right:10px;" >
+						<button class="btn btn-sm" tooltip="Creará un dominio exclusivo para esta regla" tooltip-placement="right"><i class="fa fa-question"></i></button>
+							Regla atómica:
+						</h5>
+					</div>
+					<div flex="10" style="margin-top: 13px; padding-left: 20px">
+						<label class="ui-switch ui-switch-lg m-t-xs m-r">
+							<input type="checkbox" ng-model="table.atomic">
+							<i></i>
+						</label>
+					</div>
+					<div flex="10" ng-hide="table.atomic">
+						<h5 class="cute" style="color: #666; text-align: right; margin-top: 28px; margin-right:10px;">dominio:</h5>
+					</div>
+					<div isteven-multi-select
+						ng-hide="table.atomic"
+						style="margin-top: 14px"
+						input-model="catalogs"
+						output-model="catalog"
+						button-label="name"
+						item-label="name"
+						output-properties="id name"
+						selection-mode="single"
+						tick-property="ticked"
+						max-height="200px"
+	          			helper-elements="none filter"> </div>
+
+					<div flex="15">
+						<h5 class="cute" style="color: #666; text-align: right; margin-top: 28px; margin-right:10px;">Instrumento Normativo:</h5>					 
+					</div>
+					 <div isteven-multi-select
+							style="margin-top: 14px"
+							input-model="instruments"
+							output-model="SelectedInstruments"
+							button-label="name"
+							item-label="name"
+							output-properties="id name"
+							tick-property="ticked"
+							max-height="200px"
+	          				helper-elements="none filter"> 
+					</div>
+				</div>
+			</form>
+			<h4>Tabla</h4>
+			<a md-ink-ripple class="btn btn-fw btn-primary btn-addon" style="margin-bottom:20px;" ng-click="addEntity($event)">
+				<i class="fa fa-plus"></i>
+				Agregar entidad
+			</a>
+			<div class="content-wrap" ng-show="table.entities.length>0">
+			<!-- HEADER -->
+			<div id="header-table">
+						<div class="red thead"> <!-- tyle="display: inline-block;"-->
+							<div class="case">
+								<span class="t-title">CASO</span>
+							</div>
+						</div>
+						<div class="blue condition thead" ng-repeat="entity in table.entities" ng-init="entityIndex = $index">
+								<div class="theader">
+									<span class="t-title sp-right">{{entity.entity.name.length>13?entity.entity.name.substring(0,13)+"...":entity.entity.name}}</span>
+									<div class="btn-group pull-right">
+										<button class="btn btn-info btn-addon btn-sm button-highlight" md-ink-ripple ng-click="addCondition($event, entity, $index)"><i class="fa fa-plus"></i>Condición</button>
+										<button class="btn btn-info btn-sm button-highlight" md-ink-ripple ng-click="delEntity($event, entity, $index)"><i class="fa fa-trash"></i>
+												<md-tooltip md-direction="right">
+													 Eliminar entidad
+												</md-tooltip>
+										</button>
+									</div>
+								</div>
+								<div class="tsub-header" ng-repeat="cond in entity.conds" ng-init="condIndex = $index">
+									<span class="t-title" tooltip="{{cond.attribute}}">{{cond.attribute.length>13?"..."+cond.attribute.substring(cond.attribute.length-13,cond.attribute.length):cond.attribute}}
+									</span>
+									<span class="t-connector">{{cond.connector}}</span>
+									<span class="t-connector">
+										<button class="btn btn-info btn-xs pull-right button-highlight margintop4px" ng-click="delCondition(entityIndex, condIndex)">
+											<i class="fa fa-trash"></i>
+											<md-tooltip md-direction="right">
+												 Eliminar Condición
+											</md-tooltip>
+										</button>
+									</span>
+								</div>
+						</div>
+						<div class="cyan action thead">
+							<div class="case">
+								<span class="t-title">ACCIONES</span>
+							</div>
+						</div>
+				</div>
+				<!-- /HEADER -->
+				<div class="table-loop" ng-repeat="row in table.rows" ng-init="rowIndex = $index">
+					<div class="red-50 tbody"> <!-- tyle="display: inline-block;"-->
+						<div>
+							<span class="t-connector btn-group">
+								<button class="btn btn-danger btn-xs" md-ink-ripple type="button" ng-click="delRow($index)">
+									<i class="fa fa-trash"></i>
+									<md-tooltip md-direction="right">Eliminar fila</md-tooltip>
+								</button>
+								<button class="btn btn-default btn-xs" md-ink-ripple type="button" ng-show="$index>0" ng-click="moveRowUp($index)">
+									<i class="fa fa-chevron-up"></i>
+								</button>
+								<button class="btn btn-default btn-xs" md-ink-ripple ng-hide="$index==table.rows.length-1" ng-click="moveRowDown($index)">
+									<i class="fa fa-chevron-down"></i>
+								</button>
+							</span>
+							<span class="t-title">
+									<input type="text" ng-model="row.tempCase" ng-if="!row.case">
+									{{row.case | makeLittle}}
+							</span>
+							<span class="t-connector btn-group">
+								<button class="btn btn-success btn-xs" type="button" md-ink-ripple ng-if="!row.case" ng-click="acceptCase(row)">
+									<i class="fa fa-check"></i>
+								</button>
+								<button class="btn btn-default btn-xs" type="button" md-ink-ripple ng-if="row.case" ng-click="editCase(row)">
+									<i class="fa fa-pencil"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+					<div class="grey-50 condition tbody" ng-repeat="entity in table.entities" ng-init="entityIndex = $index">
+						<div class="tsub-header" ng-repeat="cond in entity.conds" ng-init="condIndex = $index; celda = row.entities[entityIndex].conds[condIndex]">
+							<!-- PRENORMAL-INPUT -->
+							<div ng-if="celda.type=='preNormal'">
+								<!-- SOLO CUANDO ES EN / NO EN (LISTA) -->
+								<span class="t-title" ng-hide="(table.entities[entityIndex].conds[condIndex].connector != 'en' && table.entities[entityIndex].conds[condIndex].connector != 'no en')">
+									<select type="text" ng-model="celda.value" ng-options="list.name as list.name for list in lists[table.entities[entityIndex].conds[condIndex].attrType]"></select>
+								</span>
+								<!-- INPUT NORMAL -->
+								<span class="t-title" ng-hide="(table.entities[entityIndex].conds[condIndex].attrType == 'date' || table.entities[entityIndex].conds[condIndex].connector == 'en' || table.entities[entityIndex].conds[condIndex].connector == 'no en')">
+									<input type="text" ng-model="celda.value" typeahead="item for item in typeAheadList | filter:$viewValue | limitTo:8">
+								</span>
+								<!-- SOLO CUANDO ES FECHA -->
+								<span class="t-title" ng-hide="(table.entities[entityIndex].conds[condIndex].connector == 'en' || table.entities[entityIndex].conds[condIndex].connector == 'no en' || table.entities[entityIndex].conds[condIndex].attrType != 'date') ">
+									<button class="btn btn-primary btn-xs margintop4px noBorderRadius btn-stroke"  style="overflow: hidden; width: 60%;" ng-click="handleDate(celda, $event)"><i class="fa fa-pencil"></i> Fecha: {{celda.value | date:"dd/MM/yyyy" | makeLittle}}
+									</button>
+								</span>
+								<span class="t-connector btn-group">
+								<button class="btn btn-success btn-xs margintop4px" type="button" md-ink-ripple ng-click="acceptValue(celda, table.entities[entityIndex].conds[condIndex])">
+									<i class="fa fa-check"></i>
+								</button>
+									<button class="btn btn-danger btn-xs margintop4px" md-ink-ripple ng-click="delRowCondition(celda)">
+											<i class="fa fa-trash"></i>
+										</button>
+								<button class="btn btn-default btn-xs margintop4px" md-ink-ripple ng-click="addFunction($event, celda)">
+									<i class="fa fa-superscript"></i>
+									<md-tooltip>Comparar con resultado de formula / funcion</md-tooltip>
+								</button>
+								</span>
+							</div>
+							<!-- NORMAL NO INPUT -->
+							<div ng-if="celda.type=='normal'">
+									<span class="t-title" tooltip="{{celda.value}}" tooltip-enable="celda.value.length>10" ng-hide="table.entities[entityIndex].conds[condIndex].attrType == 'date'">
+										{{celda.value | makeLittle}}
+									</span>
+									<span class="t-title" tooltip="{{celda.value |date:'dd/MM/yyyy'}}" tooltip-enable="celda.value.length>10" ng-show="table.entities[entityIndex].conds[condIndex].attrType == 'date'">
+										{{celda.value | date:'dd/MM/yyyy'}}
+									</span>
+								<span class="t-connector btn-group">
+									<button class="btn btn-default btn-xs" type="button" md-ink-ripple ng-click="editCondValue(celda)">
+										<i class="fa fa-pencil"></i>
+									</button>
+									<button class="btn btn-danger btn-xs" md-ink-ripple ng-click="delRowCondition(celda)">
+										<i class="fa fa-trash"></i>
+									</button>
+								</span>
+							</div>
+							<!-- NONE -->
+							<div ng-if="celda.type=='none' && !celda.formula && !celda.funct">
+								<span class="t-connector btn-group">
+									<button class="btn btn-default btn-xs" md-ink-ripple ng-click="useCondition(celda)">
+											USAR
+									</button>
+
+								</span>
+							</div>
+							<!-- Formula/Function -->
+							<div ng-if="celda.type=='formula'">
+								<span class="t-title">
+										{{celda.formula.line | makeLittle}}
+										<md-tooltip>Formula: {{celda.formula.line}}</md-tooltip>
+								</span>
+								<span class="t-connector btn-group">
+									<button class="btn btn-default btn-xs" type="button" md-ink-ripple ng-click="addFunction($event, celda)">
+										<i class="fa fa-pencil"></i>
+									</button>
+									<button class="btn btn-danger btn-xs" md-ink-ripple ng-click="delRowCondition(celda)">
+										<i class="fa fa-trash"></i>
+									</button>
+								</span>
+							</div>
+							<!-- Formula/Function -->
+							<div ng-if="celda.type=='funct'">
+								<span class="t-title">
+										{{celda.funct.name | makeLittle}}
+										<md-tooltip>Funcion: {{celda.funct.name}}...</md-tooltip>
+								</span>
+								<span class="t-connector btn-group">
+									<button class="btn btn-default btn-xs" type="button" md-ink-ripple ng-click="addFunction($event, celda)">
+										<i class="fa fa-pencil"></i>
+									</button>
+									<button class="btn btn-danger btn-xs" md-ink-ripple ng-click="delRowCondition(celda)">
+										<i class="fa fa-trash"></i>
+									</button>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="grey-100 action tbody">
+						<div ng-repeat="action in row.actions track by $index" style="clear:both;">
+							<button class="btn btn-default noBorderRadius maxwidth" md-ink-ripple ng-click="actions($event,row.actions,$index)" style="float:left;">
+								<span ng-show="action.type=='modify'">
+									{{action.attr.name+"="+action.value | makeLittle}}
+									<md-tooltip >
+										{{action.attr.name+"="+action.value}}
+									</md-tooltip>
+								</span>
+								<span ng-show="action.type=='message'">
+									Mensaje: {{action.value | makeLittle}}
+									<md-tooltip >
+										Mensaje: {{action.value}}
+									</md-tooltip>
+								</span>
+								<span ng-show="action.type=='funct'">
+									Función: {{action.attr.name+"=" +action.funct.name+"(...)" | makeLittle}}
+									<md-tooltip >
+										Función: {{action.attr.name+"=" + action.funct.name+"(...)"}}
+									</md-tooltip>
+								</span>
+								<span ng-show="action.type=='formula'">
+									Formula: {{action.attr.name+"=" + action.formula.line | makeLittle}}
+									<md-tooltip >
+										Formula: {{action.attr.name+"=" + action.formula.line}}
+									</md-tooltip>
+								</span>
+							</button>
+							<button class="btn btn-default" md-ink-ripple ng-click="delAction($event,row.actions,$index)" style="float:left;">
+								<i class="fa fa-trash"></i>
+								<md-tooltip>
+									Eliminar accion
+								</md-tooltip>
+							</button>
+						</div>
+						<div style="clear:both;">
+							<button class="btn btn-primary noBorderRadius btn-addon agregar-nueva" md-ink-ripple ng-click="actions($event,row.actions, -1)">
+								<i class="fa fa-plus"></i>
+								Agregar nueva
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div default-rule></div>
+				<div different-rule></div>
+
+				<a md-ink-ripple class="btn btn-fw btn-danger btn-addon" style="margin-top:20px;" ng-click="addRow()">
+					<i class="fa fa-plus"></i>
+					Agregar fila
+				</a>
+	</div>
+			<br>
+			<div class="clear"></div>
+			<div class="button-area">
+					<a md-ink-ripple class="btn btn-fw btn-default" ng-click="goBack()" style="float:right; margin-left: 15px;">Volver</a>
+					<a md-ink-ripple class="btn btn-fw btn-addon btn-primary" ng-click="save()" style="float:right; margin-left:15px;"><i class="fa fa-floppy-o"></i> Guardar</a>
+					<button ng-hide="$parent.entitiesExternal" md-ink-ripple type="button" class="btn btn-primary btn-fw btn-addon" ng-click="save('goBack')" style="float:right; margin-left:15px;">
+					    <i class="fa fa-save"></i>
+					    Guardar y volver
+					</button>
+			</div>
+		</md-content>
+	</div>
+</div>

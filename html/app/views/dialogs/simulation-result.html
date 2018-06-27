@@ -1,0 +1,32 @@
+<md-dialog aria-label="List dialog" flex="50">
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <div class="alert alert-danger" ng-show="!data.success">
+                <button type="button" class="close" aria-label="Close" ng-click="closeDialog()"><span aria-hidden="true">&times;</span></button>
+                <h4>Errores en la simulación</h4>
+                <h6>Mensaje</h6>
+                   <pre>{{data.message}}</pre>
+                <h6>Respuesta</h6>
+                   <pre>{{data.response}}</pre>
+            </div> 
+            <div class="alert alert-success" ng-show="data.success">
+                <button type="button" class="close" aria-label="Close" ng-click="closeDialog()"><span aria-hidden="true">&times;</span></button>
+                <h4>Resultado de la simulación</h4>
+                <h6>Mensaje</h6>
+                   <pre>{{data.message}}</pre>
+                <h6>Respuesta</h6>
+                   <pre ng-if="data.response.length<=100">{{data.response | json}}</pre>
+                   <div ng-if="data.response.length>100">
+                        <h4>El resultado de la simulación es demasiado grande para ser previsualizado en el navegador</h4> 
+                   </div>
+                    <button class="btn btn-lg btn-primary" ng-click="saveJSON();">Descargar archivo de respuesta</button>
+            </div> 
+        </div>
+    </md-dialog-content> 
+
+    <div class="md-actions">  
+        <md-button ng-click="closeDialog()" class="md-primary"> 
+            Cerrar 
+        </md-button> 
+    </div> 
+</md-dialog>

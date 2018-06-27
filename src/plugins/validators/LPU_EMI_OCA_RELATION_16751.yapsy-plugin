@@ -1,0 +1,9 @@
+[Core]
+Name = LPU_EMI_OCA_RELATION_16751
+Module = LPU_EMI_OCA_RELATION_16751
+[Documentation]
+
+Description = Apertura - Preseleccion
+Author = SK
+Version = 0.1
+Organization = jgm - ArDifusion

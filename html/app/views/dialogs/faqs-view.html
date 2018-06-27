@@ -1,0 +1,26 @@
+<md-dialog aria-label="List dialog" flex="50">
+    <md-dialog-content style="padding: 5px 5px 0px 5px">
+        <div class="md-dialog-content">
+            <div class="alert alert-grey">
+                <button type="button" class="close" aria-label="Close" ng-click="closeDialog()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4>{{name}}.</h4>
+                <br>
+                <h6>Preguntas Frecuentes</h6>
+                <ul>
+                    <li ng-repeat="faq in faqs">
+                        <div>{{faq.name}}</div>
+                        <div class="faqs-description">{{faq.description}}</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </md-dialog-content>
+
+    <div class="md-actions">
+        <md-button ng-click="closeDialog()" class="md-primary">
+            Cerrar
+        </md-button>
+    </div>
+</md-dialog>
