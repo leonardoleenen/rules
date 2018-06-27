@@ -1,0 +1,16 @@
+ flask==0.10.1
+ PyMongo==3.0.3, 
+ flask_cors==2.1.0 
+ httplib2==2-9.9.1, 
+ reportlab==3.2.0
+ yapsy==1.11.223 
+ redis==2.10.3
+ xlrd
+ xlsxwriter
+ pyyaml
+ python-ldap==2.4.20
+ flask-login
+ rauth
+ flask-mongoalchemy
+ M2Crypto
+ python-dateutil
